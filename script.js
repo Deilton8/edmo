@@ -1,124 +1,132 @@
-// Fecha o menu mobile ao carregar a página
 document.addEventListener('DOMContentLoaded', () => {
+    // Seletores principais
     const mobileMenu = document.querySelector('.mobile-menu');
+    const mobileMenuButton = document.querySelector('.mobile-menu-button');
+    const backToTopBtn = document.getElementById('backToTopBtn');
+    const carousel = document.getElementById('partnerCarousel');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const whatsappForm = document.getElementById('whatsappForm');
+    const sections = document.querySelectorAll('.section');
+
+    // 1. Fecha o menu mobile ao carregar a página (se estiver aberto)
     if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
         mobileMenu.classList.add('hidden');
     }
-});
 
-// Mobile menu toggle
-const mobileMenuButton = document.querySelector('.mobile-menu-button');
-const mobileMenu = document.querySelector('.mobile-menu');
+    // 2. Toggle menu mobile
+    if (mobileMenuButton && mobileMenu) {
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    }
 
-mobileMenuButton.addEventListener('click', () => {
-    mobileMenu.classList.toggle('hidden');
-});
+    // 3. Smooth scroll para links de navegação
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', (e) => {
+            e.preventDefault();
+            const targetId = anchor.getAttribute('href');
+            const targetElement = document.querySelector(targetId);
 
-// Smooth scrolling for navigation links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
+            if (targetElement) {
+                // Fecha menu mobile ao clicar em link
+                if (mobileMenu) {
+                    mobileMenu.classList.add('hidden');
+                }
 
-        const targetId = this.getAttribute('href');
-        const targetElement = document.querySelector(targetId);
-
-        if (targetElement) {
-            // Close mobile menu if open
-            mobileMenu.classList.add('hidden');
-
-            window.scrollTo({
-                top: targetElement.offsetTop - 80,
-                behavior: 'smooth'
-            });
-        }
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            }
+        });
     });
-});
 
-// Scroll animation for sections
-const sections = document.querySelectorAll('.section');
-
-function checkScroll() {
-    sections.forEach(section => {
-        const sectionTop = section.getBoundingClientRect().top;
+    // 4. Animação ao scroll para seções
+    function checkSectionsVisibility() {
         const windowHeight = window.innerHeight;
 
-        if (sectionTop < windowHeight - 100) {
-            section.classList.add('visible');
+        sections.forEach(section => {
+            const sectionTop = section.getBoundingClientRect().top;
+
+            if (sectionTop < windowHeight - 100) {
+                section.classList.add('visible');
+            }
+        });
+    }
+
+    checkSectionsVisibility(); // Inicial
+
+    window.addEventListener('scroll', checkSectionsVisibility);
+
+    // 5. Carrossel de parceiros
+    if (carousel && prevBtn && nextBtn) {
+        let currentIndex = 0;
+        const totalSlides = carousel.children.length;
+
+        function showSlide(index) {
+            carousel.style.transform = `translateX(${-index * 100}%)`;
         }
-    });
-}
 
-// Partner carousel functionality
-const carousel = document.getElementById('partnerCarousel');
-const prevBtn = document.getElementById('prevBtn');
-const nextBtn = document.getElementById('nextBtn');
+        nextBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % totalSlides;
+            showSlide(currentIndex);
+        });
 
-let index = 0;
-const totalSlides = carousel.children.length;
+        prevBtn.addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+            showSlide(currentIndex);
+        });
 
-function showSlide(i) {
-    carousel.style.transform = `translateX(${-i * 100}%)`;
-}
+        // Auto-slide a cada 4 segundos
+        setInterval(() => {
+            currentIndex = (currentIndex + 1) % totalSlides;
+            showSlide(currentIndex);
+        }, 4000);
+    }
 
-nextBtn.addEventListener('click', () => {
-    index = (index + 1) % totalSlides;
-    showSlide(index);
-});
+    // 6. Envio do formulário via WhatsApp
+    if (whatsappForm) {
+        whatsappForm.addEventListener('submit', (e) => {
+            e.preventDefault();
 
-prevBtn.addEventListener('click', () => {
-    index = (index - 1 + totalSlides) % totalSlides;
-    showSlide(index);
-});
+            const phoneNumber = "258844862630";
 
-// Auto-slide every 4 seconds
-setInterval(() => {
-    index = (index + 1) % totalSlides;
-    showSlide(index);
-}, 4000);
+            const name = document.getElementById('name')?.value.trim() || '';
+            const email = document.getElementById('email')?.value.trim() || '';
+            const phone = document.getElementById('phone')?.value.trim() || '';
+            const service = document.getElementById('service')?.value.trim() || '';
+            const message = document.getElementById('message')?.value.trim() || '';
 
-// WhatsApp form submission
-document.getElementById('whatsappForm').addEventListener('submit', function (e) {
-    e.preventDefault();
-
-    // Replace with your WhatsApp number in international format (without + or spaces)
-    const phoneNumber = "258844862630";
-
-    // Get form values
-    const name = document.getElementById('name').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const phone = document.getElementById('phone').value.trim();
-    const service = document.getElementById('service').value.trim();
-    const message = document.getElementById('message').value.trim();
-
-    // Create WhatsApp message
-    const whatsappMessage = `Hello, my name is ${name}.
+            const whatsappMessage = `Hello, my name is ${name}.
 Email: ${email}
 Phone: ${phone}
 Service Needed: ${service}
 Message: ${message}`;
 
-    // Encode and open WhatsApp
-    const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(whatsappMessage)}`;
-    window.open(url, '_blank');
-});
+            const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+            window.open(url, '_blank');
+        });
+    }
 
-const backToTopBtn = document.getElementById('backToTopBtn');
+    // 7. Botão voltar ao topo
+    if (backToTopBtn) {
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopBtn.classList.remove('hidden');
+            } else {
+                backToTopBtn.classList.add('hidden');
+            }
+        });
 
-// Show or hide button on scroll
-window.addEventListener('scroll', () => {
-    if (window.scrollY > 300) {
-        backToTopBtn.classList.remove('hidden');
-    } else {
-        backToTopBtn.classList.add('hidden');
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
     }
 });
 
-// Smooth scroll to top
-backToTopBtn.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-});
-
-// Google Translate integration
+// 8. Integração Google Translate (fora do DOMContentLoaded para global)
+// Inicializa o widget do Google Translate
 function googleTranslateElementInit() {
     new google.translate.TranslateElement({
         pageLanguage: 'pt',
@@ -127,6 +135,7 @@ function googleTranslateElementInit() {
     }, 'google_translate_element');
 }
 
+// Função para trocar idioma via Google Translate
 function translatePage(lang) {
     const select = document.querySelector('.goog-te-combo');
     if (select) {
@@ -134,9 +143,3 @@ function translatePage(lang) {
         select.dispatchEvent(new Event('change'));
     }
 }
-
-// Initial check
-checkScroll();
-
-// Check on scroll
-window.addEventListener('scroll', checkScroll);

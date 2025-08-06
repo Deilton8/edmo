@@ -1,11 +1,18 @@
+/* Importa a fonte Poppins do Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
+/* Estilos base para o corpo */
 body {
     font-family: 'Poppins', sans-serif;
     scroll-behavior: smooth;
+    margin: 0;
+    /* boa prática zerar margens padrão */
+    padding: 0;
     top: 0 !important;
+    /* avalie se realmente precisa do !important */
 }
 
+/* Animação de entrada para seções */
 .section {
     opacity: 0;
     transform: translateY(20px);
@@ -17,9 +24,22 @@ body {
     transform: translateY(0);
 }
 
+/* Card de serviços com efeito hover */
+.service-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
 .service-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    box-shadow:
+        0 20px 25px -5px rgba(0, 0, 0, 0.1),
+        0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Linha de timeline */
+.timeline-item {
+    position: relative;
+    /* necessário para o ::after absoluto */
 }
 
 .timeline-item:not(:last-child)::after {
@@ -32,15 +52,26 @@ body {
     background: oklch(37.9% 0.146 265.522);
 }
 
+/* Efeito hover na imagem do membro da equipe */
+.team-member img {
+    transition: transform 0.3s ease;
+}
+
 .team-member:hover img {
     transform: scale(1.05);
 }
 
+/* Background do herói com gradiente e imagem */
 .hero-bg {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80');
+    background-image:
+        linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+        url('https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80');
     background-size: cover;
     background-position: center;
+    background-repeat: no-repeat;
 }
+
+/* Google Translate - remoção de banner e elementos indesejados */
 
 /* Remove banner do topo */
 iframe.goog-te-banner-frame {
@@ -53,12 +84,12 @@ iframe.goog-te-banner-frame {
     display: none !important;
 }
 
-/* Remove sombra azul de tradução */
+/* Remove sombra azul do widget */
 body>.skiptranslate {
     display: none !important;
 }
 
-/* Oculta o select original */
+/* Oculta o seletor original de idioma */
 #google_translate_element {
     display: none;
 }
