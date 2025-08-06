@@ -12,20 +12,22 @@
 
 <body class="bg-gray-50">
     <!-- Navigation -->
-    <nav class="bg-blue-900 text-white shadow-lg fixed w-full z-50">
+    <nav class="bg-white text-blue-900 shadow-lg fixed w-full z-50">
         <div class="container mx-auto px-6 py-3">
             <div class="flex justify-between items-center">
                 <div class="flex items-center space-x-4">
                     <div class="flex items-center">
-                        <i class="fas fa-truck-moving text-2xl text-emerald-300 mr-2"></i>
-                        <span class="font-bold text-xl">EDMO Africa Trading</span>
+                        <a href="#home" class="inline-block transition transform hover:scale-105">
+                            <img src="images/logo.png" alt="EDMO Africa Trading Logo"
+                                class="h-12 w-auto md:h-14 object-contain">
+                        </a>
                     </div>
                 </div>
 
                 <!-- Mobile menu button -->
                 <div class="md:hidden flex items-center">
                     <button class="outline-none mobile-menu-button">
-                        <svg class="w-6 h-6 text-gray-200" fill="none" stroke-linecap="round" stroke-linejoin="round"
+                        <svg class="w-6 h-6 text-blue-900" fill="none" stroke-linecap="round" stroke-linejoin="round"
                             stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
                             <path d="M4 6h16M4 12h16M4 18h16"></path>
                         </svg>
@@ -34,11 +36,11 @@
 
                 <!-- Desktop Menu -->
                 <div class="hidden md:flex items-center space-x-8">
-                    <a href="#home" class="text-gray-200 hover:text-emerald-300 transition">Home</a>
-                    <a href="#about" class="text-gray-200 hover:text-emerald-300 transition">About</a>
-                    <a href="#services" class="text-gray-200 hover:text-emerald-300 transition">Services</a>
-                    <a href="#timeline" class="text-gray-200 hover:text-emerald-300 transition">Milestones</a>
-                    <a href="#team" class="text-gray-200 hover:text-emerald-300 transition">Team</a>
+                    <a href="#home" class="text-blue-900 hover:text-emerald-300 transition">Home</a>
+                    <a href="#about" class="text-blue-900 hover:text-emerald-300 transition">About</a>
+                    <a href="#services" class="text-blue-900 hover:text-emerald-300 transition">Services</a>
+                    <a href="#timeline" class="text-blue-900 hover:text-emerald-300 transition">Milestones</a>
+                    <a href="#team" class="text-blue-900 hover:text-emerald-300 transition">Team</a>
                     <a href="#contact"
                         class="bg-emerald-300 hover:bg-emerald-500 px-4 py-2 rounded-md transition">Contact
                         Us</a>
@@ -49,16 +51,17 @@
             <div class="mobile-menu hidden md:hidden">
                 <div class="flex flex-col space-y-4 mt-4 pb-4">
                     <a href="#home"
-                        class="block px-4 py-2 text-gray-200 hover:bg-emerald-500 rounded transition">Home</a>
+                        class="block px-4 py-2 text-blue-900 hover:text-emerald-300 rounded transition">Home</a>
                     <a href="#about"
-                        class="block px-4 py-2 text-gray-200 hover:bg-emerald-500 rounded transition">About</a>
+                        class="block px-4 py-2 text-blue-900 hover:text-emerald-300 rounded transition">About</a>
                     <a href="#services"
-                        class="block px-4 py-2 text-gray-200 hover:bg-emerald-500 rounded transition">Services</a>
+                        class="block px-4 py-2 text-blue-900 hover:text-emerald-300 rounded transition">Services</a>
                     <a href="#timeline"
-                        class="block px-4 py-2 text-gray-200 hover:bg-emerald-500 rounded transition">Milestones</a>
+                        class="block px-4 py-2 text-blue-900 hover:text-emerald-300 rounded transition">Milestones</a>
                     <a href="#team"
-                        class="block px-4 py-2 text-gray-200 hover:bg-emerald-500 rounded transition">Team</a>
-                    <a href="#contact" class="block px-4 py-2 bg-emerald-300 text-white rounded text-center">Contact
+                        class="block px-4 py-2 text-blue-900 hover:text-emerald-300 rounded transition">Team</a>
+                    <a href="#contact"
+                        class="block px-4 py-2 bg-emerald-300 hover:bg-emerald-500 rounded text-center transition">Contact
                         Us</a>
                 </div>
             </div>
@@ -461,65 +464,73 @@
         </div>
     </section>
 
-    <!-- Testimonials Section -->
+    <!-- Client Documents Section -->
     <section class="py-16 bg-blue-900 text-white section">
         <div class="container mx-auto px-6">
             <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold mb-4">What Our Clients Say</h2>
+                <h2 class="text-3xl font-bold mb-4">Companies and Suppliers Documents</h2>
                 <div class="w-20 h-1 bg-emerald-300 mx-auto"></div>
+                <p class="text-blue-100 mt-4 max-w-2xl mx-auto">
+                    Here are official PDF documents and certificates provided by our valued suppliers and companies we
+                    work with.
+                    You can view or download them directly.
+                </p>
             </div>
 
             <div class="grid md:grid-cols-3 gap-8">
-                <!-- Testimonial 1 -->
-                <div class="bg-white bg-opacity-20 p-8 rounded-lg">
-                    <div class="flex items-center mb-4">
-                        <div
-                            class="w-12 h-12 rounded-full bg-white flex items-center justify-center text-gray-600 font-bold mr-4">
-                            JD</div>
-                        <div>
-                            <h4 class="font-bold">John Doe</h4>
-                            <p class="text-blue-100">Mining Company CEO</p>
-                        </div>
-                    </div>
-                    <p class="italic">
-                        "Edmo Africa Trading transformed our cross-border operations. Their procurement team sourced
-                        specialized equipment we couldn't find elsewhere, and their logistics ensured timely delivery
-                        every time."
-                    </p>
+                <!-- Document 1 -->
+                <div class="bg-white bg-opacity-20 p-6 rounded-lg shadow-md text-center">
+                    <i class="fas fa-file-pdf text-red-500 text-5xl mb-4"></i>
+                    <h4 class="font-bold text-lg mb-2">Afritool Moçambique Lda</h4>
+                    <p class="text-blue-100 mb-4">Official recommendation certificate for our services</p>
+                    <a href="docs/Afritool.pdf" target="_blank"
+                        class="bg-emerald-300 hover:bg-emerald-500 text-white px-4 py-2 rounded-md inline-block transition">
+                        View PDF
+                    </a>
                 </div>
 
-                <!-- Testimonial 2 -->
-                <div class="bg-white bg-opacity-20 p-8 rounded-lg">
-                    <div class="flex items-center mb-4">
-                        <div
-                            class="w-12 h-12 rounded-full bg-white flex items-center justify-center text-gray-600 font-bold mr-4">
-                            SM</div>
-                        <div>
-                            <h4 class="font-bold">Sarah M.</h4>
-                            <p class="text-blue-100">Manufacturing Director</p>
-                        </div>
-                    </div>
-                    <p class="italic">
-                        "Their border clearing assistance saved us countless hours and headaches. What used to take days
-                        now happens in hours. Their knowledge of Mozambican regulations is unparalleled."
-                    </p>
+                <!-- Document 2 -->
+                <div class="bg-white bg-opacity-20 p-6 rounded-lg shadow-md text-center">
+                    <i class="fas fa-file-pdf text-red-500 text-5xl mb-4"></i>
+                    <h4 class="font-bold text-lg mb-2">DCC Technologies</h4>
+                    <p class="text-blue-100 mb-4">Authorised reseller confirmation for our company</p>
+                    <a href="docs/DCC.pdf" target="_blank"
+                        class="bg-emerald-300 hover:bg-emerald-500 text-white px-4 py-2 rounded-md inline-block transition">
+                        View PDF
+                    </a>
                 </div>
 
-                <!-- Testimonial 3 -->
-                <div class="bg-white bg-opacity-20 p-8 rounded-lg">
-                    <div class="flex items-center mb-4">
-                        <div
-                            class="w-12 h-12 rounded-full bg-white flex items-center justify-center text-gray-600 font-bold mr-4">
-                            TK</div>
-                        <div>
-                            <h4 class="font-bold">Thomas K.</h4>
-                            <p class="text-blue-100">Construction Firm Owner</p>
-                        </div>
-                    </div>
-                    <p class="italic">
-                        "From heavy machinery transport to helping with school admissions for our expat staff, Edmo goes
-                        above and beyond. They're not just a service provider - they're a true partner."
-                    </p>
+                <!-- Document 3 -->
+                <div class="bg-white bg-opacity-20 p-6 rounded-lg shadow-md text-center">
+                    <i class="fas fa-file-pdf text-red-500 text-5xl mb-4"></i>
+                    <h4 class="font-bold text-lg mb-2">DENMAC</h4>
+                    <p class="text-blue-100 mb-4">Recommendation letter for our company</p>
+                    <a href="docs/Denmac.pdf" target="_blank"
+                        class="bg-emerald-300 hover:bg-emerald-500 text-white px-4 py-2 rounded-md inline-block transition">
+                        View PDF
+                    </a>
+                </div>
+
+                <!-- Document 4 -->
+                <div class="bg-white bg-opacity-20 p-6 rounded-lg shadow-md text-center">
+                    <i class="fas fa-file-pdf text-red-500 text-5xl mb-4"></i>
+                    <h4 class="font-bold text-lg mb-2">HIRSCH'S</h4>
+                    <p class="text-blue-100 mb-4">Confirmation letter as a customer of Hirsch's.</p>
+                    <a href="docs/Hirsch.pdf" target="_blank"
+                        class="bg-emerald-300 hover:bg-emerald-500 text-white px-4 py-2 rounded-md inline-block transition">
+                        View PDF
+                    </a>
+                </div>
+
+                <!-- Document 5 -->
+                <div class="bg-white bg-opacity-20 p-6 rounded-lg shadow-md text-center">
+                    <i class="fas fa-file-pdf text-red-500 text-5xl mb-4"></i>
+                    <h4 class="font-bold text-lg mb-2">Sinfo</h4>
+                    <p class="text-blue-100 mb-4">Letter of recommendation</p>
+                    <a href="docs/Sinfo.pdf" target="_blank"
+                        class="bg-emerald-300 hover:bg-emerald-500 text-white px-4 py-2 rounded-md inline-block transition">
+                        View PDF
+                    </a>
                 </div>
             </div>
         </div>
@@ -591,7 +602,8 @@
                             </div>
                             <div>
                                 <h4 class="font-bold text-gray-800 mb-1">Phone</h4>
-                                <p class="text-gray-600">+258 84 486 2630 <br>
+                                <p class="text-gray-600">+258 87 606 3000 <br>
+                                    +258 84 486 2630 <br>
                                     +277 3577 6411</p>
                             </div>
                         </div>
@@ -675,7 +687,7 @@
                         </div>
 
                         <button type="submit"
-                            class="w-full bg-blue-900 hover:bg-blue-800 text-green-500 font-bold py-3 px-4 rounded-md transition duration-300 flex items-center justify-center gap-2">
+                            class="w-full bg-transparent border border-green-500 hover:bg-green-500 text-green-500 hover:text-white font-bold py-3 px-4 rounded-md transition duration-300 flex items-center justify-center gap-2">
                             <i class="fab fa-whatsapp text-xl"></i> Send via WhatsApp
                         </button>
                     </form>
@@ -691,9 +703,13 @@
 
                 <!-- Company Info -->
                 <div class="md:w-1/3">
-                    <div class="flex items-center mb-4">
-                        <i class="fas fa-truck-moving text-2xl text-emerald-300 mr-2"></i>
-                        <span class="font-bold text-xl">EDMO Africa Trading</span>
+                    <div class="flex items-center space-x-4">
+                        <div class="flex items-center">
+                            <a href="#home" class="inline-block transition transform hover:scale-105">
+                                <img src="images/logo2.png" alt="EDMO Africa Trading Logo"
+                                    class="h-32 w-auto md:h-36 object-contain">
+                            </a>
+                        </div>
                     </div>
                     <p class="text-gray-300 leading-relaxed">
                         Thank you for taking the time to learn about EDMO Africa Trading Pty Ltd.
@@ -745,7 +761,8 @@
                             </li>
                             <li class="flex items-start">
                                 <i class="fas fa-phone-alt text-emerald-300 mr-3 mt-1"></i>
-                                <span class="text-gray-300">+258 84 486 2630 <br> +277 3577 6411</span>
+                                <span class="text-gray-300">+258 87 606 3000 <br> +258 84 486 2630 <br> +277 3577
+                                    6411</span>
                             </li>
                             <li class="flex items-start">
                                 <i class="fas fa-envelope text-emerald-300 mr-3 mt-1"></i>
