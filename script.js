@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
         whatsappForm.addEventListener('submit', (e) => {
             e.preventDefault();
 
-            const phoneNumber = "258844862630";
+            const phoneNumber = "258876063000";
 
             const name = document.getElementById('name')?.value.trim() || '';
             const email = document.getElementById('email')?.value.trim() || '';
@@ -98,11 +98,12 @@ document.addEventListener('DOMContentLoaded', () => {
             const service = document.getElementById('service')?.value.trim() || '';
             const message = document.getElementById('message')?.value.trim() || '';
 
-            const whatsappMessage = `Hello, my name is ${name}.
-Email: ${email}
-Phone: ${phone}
-Service Needed: ${service}
-Message: ${message}`;
+            const whatsappMessage = `*New Contact Request - EDMO Africa Trading*\n` +
+                `*Name:* ${name}\n` +
+                `*Email:* ${email}\n` +
+                `*Phone:* ${phone}\n` +
+                `*Service:* ${service}\n` +
+                `*Message:* ${message}`;
 
             const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(whatsappMessage)}`;
             window.open(url, '_blank');

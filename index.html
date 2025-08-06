@@ -2,31 +2,43 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>EDMO Africa Trading | Procurement & Logistics Solutions</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
-    <link rel="icon" type="image/png" href="images/favicon.png">
+
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com" defer></script>
+
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="images/favicon.png" />
+
+    <!-- Optional: Meta description for SEO -->
+    <meta name="description"
+        content="EDMO Africa Trading: Your trusted partner in procurement and logistics solutions between Mozambique and South Africa." />
 </head>
 
 <body class="bg-gray-50">
     <!-- Navigation -->
-    <nav class="bg-white text-blue-900 shadow-lg fixed w-full z-50">
+    <nav class="bg-white text-blue-900 shadow-lg fixed w-full z-50" role="navigation" aria-label="Main Navigation">
         <div class="container mx-auto px-6 py-3">
             <div class="flex justify-between items-center">
-                <div class="flex items-center space-x-4">
-                    <div class="flex items-center">
-                        <a href="#home" class="inline-block transition transform hover:scale-105">
-                            <img src="images/logo.png" alt="EDMO Africa Trading Logo"
-                                class="h-12 w-auto md:h-14 object-contain">
-                        </a>
-                    </div>
-                </div>
 
-                <!-- Mobile menu button + botões de idioma -->
-                <div class="md:hidden flex items-center space-x-4">
+                <!-- Logo -->
+                <a href="#home" class="inline-block transition transform hover:scale-105" aria-label="Go to Home">
+                    <img src="images/logo.png" alt="EDMO Africa Trading Logo"
+                        class="h-12 w-auto md:h-14 object-contain">
+                </a>
+
+                <!-- Mobile menu button + idiomas -->
+                <div class="md:hidden flex items-center space-x-3">
+                    <!-- Idiomas mobile -->
                     <button onclick="translatePage('pt')"
                         class="px-3 py-1 rounded-xl border border-gray-300 hover:bg-gray-100 transition text-base"
                         aria-label="Português">
@@ -38,71 +50,86 @@
                         🇬🇧
                     </button>
 
-                    <button class="outline-none mobile-menu-button">
-                        <svg class="w-6 h-6 text-blue-900" fill="none" stroke-linecap="round" stroke-linejoin="round"
-                            stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
-                            <path d="M4 6h16M4 12h16M4 18h16"></path>
+                    <!-- Botão menu -->
+                    <button class="outline-none mobile-menu-button" aria-label="Toggle navigation menu">
+                        <svg class="w-6 h-6 text-blue-900" fill="none" stroke="currentColor" stroke-width="2"
+                            viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 6h16M4 12h16M4 18h16" />
                         </svg>
                     </button>
                 </div>
 
-                <!-- Desktop Menu -->
+                <!-- Desktop menu -->
                 <div class="hidden md:flex items-center space-x-8">
-                    <a href="#home" class="text-blue-900 hover:text-emerald-300 transition">Home</a>
-                    <a href="#about" class="text-blue-900 hover:text-emerald-300 transition">About</a>
-                    <a href="#services" class="text-blue-900 hover:text-emerald-300 transition">Services</a>
-                    <a href="#timeline" class="text-blue-900 hover:text-emerald-300 transition">Milestones</a>
-                    <a href="#team" class="text-blue-900 hover:text-emerald-300 transition">Team</a>
+                    <a href="#home" class="hover:text-emerald-300 transition">Home</a>
+                    <a href="#about" class="hover:text-emerald-300 transition">About</a>
+                    <a href="#services" class="hover:text-emerald-300 transition">Services</a>
+                    <a href="#timeline" class="hover:text-emerald-300 transition">Milestones</a>
+                    <a href="#team" class="hover:text-emerald-300 transition">Team</a>
                     <a href="#contact"
-                        class="bg-emerald-300 hover:bg-emerald-500 px-4 py-2 rounded-md transition">Contact
-                        Us</a>
+                        class="bg-emerald-300 hover:bg-emerald-500 text-white px-4 py-2 rounded-md transition">
+                        Contact Us
+                    </a>
+
+                    <!-- Idiomas desktop -->
                     <div class="flex gap-2 items-center text-sm">
                         <button onclick="translatePage('pt')"
-                            class="px-3 py-1 rounded-xl border border-gray-300 hover:bg-gray-100 transition">🇵🇹</button>
+                            class="px-3 py-1 rounded-xl border border-gray-300 hover:bg-gray-100 transition"
+                            aria-label="Português">
+                            🇵🇹
+                        </button>
                         <button onclick="translatePage('en')"
-                            class="px-3 py-1 rounded-xl border border-gray-300 hover:bg-gray-100 transition">🇬🇧</button>
+                            class="px-3 py-1 rounded-xl border border-gray-300 hover:bg-gray-100 transition"
+                            aria-label="English">
+                            🇬🇧
+                        </button>
                     </div>
                 </div>
             </div>
 
-            <!-- Mobile Menu -->
-            <div class="mobile-menu block md:hidden">
+            <!-- Mobile menu -->
+            <div class="mobile-menu hidden md:hidden">
                 <div class="flex flex-col space-y-4 mt-4 pb-4 px-4">
-                    <a href="#home"
-                        class="block px-4 py-2 text-blue-900 hover:text-emerald-300 rounded transition">Home</a>
-                    <a href="#about"
-                        class="block px-4 py-2 text-blue-900 hover:text-emerald-300 rounded transition">About</a>
-                    <a href="#services"
-                        class="block px-4 py-2 text-blue-900 hover:text-emerald-300 rounded transition">Services</a>
-                    <a href="#timeline"
-                        class="block px-4 py-2 text-blue-900 hover:text-emerald-300 rounded transition">Milestones</a>
-                    <a href="#team"
-                        class="block px-4 py-2 text-blue-900 hover:text-emerald-300 rounded transition">Team</a>
+                    <a href="#home" class="block px-4 py-2 hover:text-emerald-300 transition">Home</a>
+                    <a href="#about" class="block px-4 py-2 hover:text-emerald-300 transition">About</a>
+                    <a href="#services" class="block px-4 py-2 hover:text-emerald-300 transition">Services</a>
+                    <a href="#timeline" class="block px-4 py-2 hover:text-emerald-300 transition">Milestones</a>
+                    <a href="#team" class="block px-4 py-2 hover:text-emerald-300 transition">Team</a>
                     <a href="#contact"
-                        class="block px-4 py-2 bg-emerald-300 hover:bg-emerald-500 rounded text-center transition">Contact
-                        Us</a>
+                        class="block px-4 py-2 text-center bg-emerald-300 hover:bg-emerald-500 text-white rounded transition">
+                        Contact Us
+                    </a>
                 </div>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="hero-bg pt-32 pb-20 md:pt-40 md:pb-32 text-white section">
+    <section id="home" class="hero-bg pt-32 pb-20 md:pt-40 md:pb-32 text-white section" aria-label="Hero Section">
         <div class="container mx-auto px-6">
             <div class="max-w-3xl">
+
+                <!-- Headline -->
                 <h1 class="text-4xl md:text-5xl font-bold leading-tight mb-6">
-                    Procurement That Performs, <br>Logistics That Delivers
+                    Procurement That Performs,<br />
+                    Logistics That Delivers
                 </h1>
+
+                <!-- Subheadline -->
                 <p class="text-xl mb-8 text-gray-200">
                     Reliable cross-border procurement and logistics solutions between South Africa and Mozambique.
                 </p>
-                <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+
+                <!-- CTA Buttons -->
+                <div class="flex flex-col sm:flex-row sm:space-x-4 space-y-4 sm:space-y-0">
                     <a href="#contact"
-                        class="bg-emerald-300 hover:bg-emerald-500 text-white font-bold py-3 px-6 rounded-md text-center transition duration-300">
+                        class="bg-emerald-300 hover:bg-emerald-500 text-white font-bold py-3 px-6 rounded-md text-center transition duration-300"
+                        role="button" aria-label="Request a Quote">
                         Get a Quote
                     </a>
                     <a href="#services"
-                        class="bg-transparent border-2 border-white hover:bg-white hover:text-blue-900 text-white font-bold py-3 px-6 rounded-md text-center transition duration-300">
+                        class="bg-transparent border-2 border-white hover:bg-white hover:text-blue-900 text-white font-bold py-3 px-6 rounded-md text-center transition duration-300"
+                        role="button" aria-label="View Our Services">
                         Our Services
                     </a>
                 </div>
@@ -115,7 +142,7 @@
         <div class="container mx-auto px-6">
             <div class="flex flex-col md:flex-row items-center">
                 <div class="md:w-1/2 mb-10 md:mb-0 md:pr-10">
-                    <h2 class="text-3xl text-center font-bold text-gray-800 mb-6">About EDMO Africa Trading</h2>
+                    <h2 class="text-3xl font-bold text-gray-800 mb-6">About EDMO Africa Trading</h2>
                     <p class="text-gray-600 mb-4">
                         EDMO Africa Trading Pty Ltd was founded by a team of experienced professionals who saw
                         the potential for better, more efficient cross-border trade between Southern Africa and
@@ -163,7 +190,7 @@
                 <div class="w-20 h-1 bg-emerald-300 mx-auto"></div>
             </div>
             <div class="grid md:grid-cols-3 gap-8">
-                <div class="bg-gray-50 p-6 rounded-lg shadow-sm text-center hover:shadow-lg transition">
+                <div class="bg-white p-6 rounded-lg shadow-sm text-center hover:shadow-lg transition">
                     <i class="fas fa-cogs text-emerald-300 text-4xl mb-4"></i>
                     <h3 class="font-bold text-lg mb-2">Tailored Solutions</h3>
                     <p class="text-gray-600">We design procurement and
@@ -172,7 +199,7 @@
                         customized support every step of
                         the way</p>
                 </div>
-                <div class="bg-gray-50 p-6 rounded-lg shadow-sm text-center hover:shadow-lg transition">
+                <div class="bg-white p-6 rounded-lg shadow-sm text-center hover:shadow-lg transition">
                     <i class="fas fa-clock text-emerald-300 text-4xl mb-4"></i>
                     <h3 class="font-bold text-lg mb-2">Timely Deliveries</h3>
                     <p class="text-gray-600">Your goods will arrive on schedule,
@@ -180,7 +207,7 @@
                         minimizing delays and maximizing
                         efficiency</p>
                 </div>
-                <div class="bg-gray-50 p-6 rounded-lg shadow-sm text-center hover:shadow-lg transition">
+                <div class="bg-white p-6 rounded-lg shadow-sm text-center hover:shadow-lg transition">
                     <i class="fas fa-globe-africa text-emerald-300 text-4xl mb-4"></i>
                     <h3 class="font-bold text-lg mb-2">Cross-Border Operations</h3>
                     <p class="text-gray-600">Our expertise in cross-border logistics
@@ -188,14 +215,14 @@
                         South Africa and Mozambique, removing
                         barriers and simplifying trade.</p>
                 </div>
-                <div class="bg-gray-50 p-6 rounded-lg shadow-sm text-center hover:shadow-lg transition">
+                <div class="bg-white p-6 rounded-lg shadow-sm text-center hover:shadow-lg transition">
                     <i class="fas fa-check-circle text-emerald-300 text-4xl mb-4"></i>
                     <h3 class="font-bold text-lg mb-2">Reliability You Can Trust</h3>
                     <p class="text-gray-600">We deliver on our promises with
                         consistent, dependable service that
                         builds long-term partnerships.</p>
                 </div>
-                <div class="bg-gray-50 p-6 rounded-lg shadow-sm text-center hover:shadow-lg transition">
+                <div class="bg-white p-6 rounded-lg shadow-sm text-center hover:shadow-lg transition">
                     <i class="fas fa-truck text-emerald-300 text-4xl mb-4"></i>
                     <h3 class="font-bold text-lg mb-2">Quality Fleet and Staff</h3>
                     <p class="text-gray-600">With a highly skilled team and a
@@ -203,7 +230,7 @@
                         ensure efficient, safe, and reliable
                         transportation of your goods.</p>
                 </div>
-                <div class="bg-gray-50 p-6 rounded-lg shadow-sm text-center hover:shadow-lg transition">
+                <div class="bg-white p-6 rounded-lg shadow-sm text-center hover:shadow-lg transition">
                     <i class="fas fa-comments text-emerald-300 text-4xl mb-4"></i>
                     <h3 class="font-bold text-lg mb-2">Transparent Communication</h3>
                     <p class="text-gray-600">We keep you informed at every stage,
@@ -676,7 +703,7 @@
 
                         <div class="mb-6">
                             <label for="email" class="block text-gray-700 font-medium mb-2">Email Address</label>
-                            <input type="email" id="email" required
+                            <input type="email" id="email"
                                 class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-300">
                         </div>
 
@@ -715,7 +742,7 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-12">
+    <footer class="bg-blue-900 text-white py-12">
         <div class="container mx-auto px-6">
             <div class="flex flex-col md:flex-row justify-between gap-12">
 
