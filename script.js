@@ -133,12 +133,6 @@ function translatePage(lang) {
         select.value = lang;
         select.dispatchEvent(new Event('change'));
     }
-
-    // Fechar menu mobile após clicar num botão de tradução
-    const mobileMenu = document.querySelector('.mobile-menu');
-    if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
-        mobileMenu.classList.add('hidden');
-    }
 }
 
 // Initial check

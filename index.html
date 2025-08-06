@@ -25,8 +25,19 @@
                     </div>
                 </div>
 
-                <!-- Mobile menu button -->
-                <div class="md:hidden flex items-center">
+                <!-- Mobile menu button + botões de idioma -->
+                <div class="md:hidden flex items-center space-x-4">
+                    <button onclick="translatePage('pt')"
+                        class="px-3 py-1 rounded-xl border border-gray-300 hover:bg-gray-100 transition text-base"
+                        aria-label="Português">
+                        🇵🇹
+                    </button>
+                    <button onclick="translatePage('en')"
+                        class="px-3 py-1 rounded-xl border border-gray-300 hover:bg-gray-100 transition text-base"
+                        aria-label="English">
+                        🇬🇧
+                    </button>
+
                     <button class="outline-none mobile-menu-button">
                         <svg class="w-6 h-6 text-blue-900" fill="none" stroke-linecap="round" stroke-linejoin="round"
                             stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
@@ -70,20 +81,6 @@
                     <a href="#contact"
                         class="block px-4 py-2 bg-emerald-300 hover:bg-emerald-500 rounded text-center transition">Contact
                         Us</a>
-
-                    <!-- Botões de idioma sem fixed -->
-                    <div class="flex justify-center space-x-3 p-2 mt-4">
-                        <button onclick="translatePage('pt')"
-                            class="flex items-center justify-center px-3 py-2 rounded-full border border-gray-300 hover:bg-gray-100 transition text-base"
-                            aria-label="Português">
-                            🇵🇹
-                        </button>
-                        <button onclick="translatePage('en')"
-                            class="flex items-center justify-center px-3 py-2 rounded-full border border-gray-300 hover:bg-gray-100 transition text-base"
-                            aria-label="English">
-                            🇬🇧
-                        </button>
-                    </div>
                 </div>
             </div>
         </div>

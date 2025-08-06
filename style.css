@@ -3,6 +3,7 @@
 body {
     font-family: 'Poppins', sans-serif;
     scroll-behavior: smooth;
+    top: 0 !important;
 }
 
 .section {
@@ -39,4 +40,25 @@ body {
     background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80');
     background-size: cover;
     background-position: center;
+}
+
+/* Remove banner do topo */
+iframe.goog-te-banner-frame {
+    display: none !important;
+}
+
+/* Esconde "powered by Google" */
+.goog-logo-link,
+.goog-te-gadget span {
+    display: none !important;
+}
+
+/* Remove sombra azul de tradução */
+body>.skiptranslate {
+    display: none !important;
+}
+
+/* Oculta o select original */
+#google_translate_element {
+    display: none;
 }
