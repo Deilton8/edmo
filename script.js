@@ -1,3 +1,11 @@
+// Fecha o menu mobile ao carregar a página
+document.addEventListener('DOMContentLoaded', () => {
+    const mobileMenu = document.querySelector('.mobile-menu');
+    if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+        mobileMenu.classList.add('hidden');
+    }
+});
+
 // Mobile menu toggle
 const mobileMenuButton = document.querySelector('.mobile-menu-button');
 const mobileMenu = document.querySelector('.mobile-menu');
@@ -109,6 +117,29 @@ window.addEventListener('scroll', () => {
 backToTopBtn.addEventListener('click', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
 });
+
+// Google Translate integration
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'pt',
+        includedLanguages: 'pt,en',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+
+function translatePage(lang) {
+    const select = document.querySelector('.goog-te-combo');
+    if (select) {
+        select.value = lang;
+        select.dispatchEvent(new Event('change'));
+    }
+
+    // Fechar menu mobile após clicar num botão de tradução
+    const mobileMenu = document.querySelector('.mobile-menu');
+    if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+        mobileMenu.classList.add('hidden');
+    }
+}
 
 // Initial check
 checkScroll();

@@ -8,6 +8,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="images/favicon.png">
 </head>
 
 <body class="bg-gray-50">
@@ -44,12 +45,18 @@
                     <a href="#contact"
                         class="bg-emerald-300 hover:bg-emerald-500 px-4 py-2 rounded-md transition">Contact
                         Us</a>
+                    <div class="flex gap-2 items-center text-sm">
+                        <button onclick="translatePage('pt')"
+                            class="px-3 py-1 rounded-xl border border-gray-300 hover:bg-gray-100 transition">🇵🇹</button>
+                        <button onclick="translatePage('en')"
+                            class="px-3 py-1 rounded-xl border border-gray-300 hover:bg-gray-100 transition">🇬🇧</button>
+                    </div>
                 </div>
             </div>
 
             <!-- Mobile Menu -->
-            <div class="mobile-menu hidden md:hidden">
-                <div class="flex flex-col space-y-4 mt-4 pb-4">
+            <div class="mobile-menu block md:hidden">
+                <div class="flex flex-col space-y-4 mt-4 pb-4 px-4">
                     <a href="#home"
                         class="block px-4 py-2 text-blue-900 hover:text-emerald-300 rounded transition">Home</a>
                     <a href="#about"
@@ -63,6 +70,20 @@
                     <a href="#contact"
                         class="block px-4 py-2 bg-emerald-300 hover:bg-emerald-500 rounded text-center transition">Contact
                         Us</a>
+
+                    <!-- Botões de idioma sem fixed -->
+                    <div class="flex justify-center space-x-3 p-2 mt-4">
+                        <button onclick="translatePage('pt')"
+                            class="flex items-center justify-center px-3 py-2 rounded-full border border-gray-300 hover:bg-gray-100 transition text-base"
+                            aria-label="Português">
+                            🇵🇹
+                        </button>
+                        <button onclick="translatePage('en')"
+                            class="flex items-center justify-center px-3 py-2 rounded-full border border-gray-300 hover:bg-gray-100 transition text-base"
+                            aria-label="English">
+                            🇬🇧
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -779,7 +800,7 @@
             <!-- Bottom Bar -->
             <div
                 class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-                <p class="text-gray-300 text-sm">&copy; 2025 Edmo Africa Trading Pty Ltd. All rights reserved.</p>
+                <p class="text-gray-300 text-sm">&copy; 2025 EDMO Africa Trading Pty Ltd. All rights reserved.</p>
                 <div class="flex space-x-4">
                     <a href="#" class="text-gray-300 hover:text-blue-700 transition"><i
                             class="fab fa-facebook-f"></i></a>
@@ -798,8 +819,12 @@
         <i class="fas fa-arrow-up"></i>
     </button>
 
+    <!-- Google Translate Element -->
+    <div id="google_translate_element" class="hidden"></div>
+
     <!-- Scripts -->
     <script src="script.js"></script>
+    <script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 
 </html>
