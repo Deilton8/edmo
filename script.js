@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', () => {
         whatsappForm.addEventListener('submit', (e) => {
             e.preventDefault();
 
-            const phoneNumber = "258876063000";
+            const phoneNumber = "258844862630";
 
             const name = document.getElementById('name')?.value.trim() || '';
             const email = document.getElementById('email')?.value.trim() || '';
