@@ -9,8 +9,15 @@
     <!-- Tailwind CSS via CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
 
+    <!-- Magic UI Animations -->
+    <script src="https://unpkg.com/@material-tailwind/html@latest/scripts/ripple.js"></script>
+    <script src="https://unpkg.com/@material-tailwind/html@latest/scripts/collapse.js"></script>
+
     <!-- Font Awesome CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+    <!-- Animate.css for smooth animations -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="style.css" />
@@ -21,81 +28,212 @@
     <!-- Optional: Meta description for SEO -->
     <meta name="description"
         content="EDMO Africa Trading: Your trusted partner in procurement and logistics solutions between Mozambique and South Africa." />
+
+    <!-- Tailwind Config with Magic UI colors -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#059669', // emerald-600
+                        'primary-dark': '#047857', // emerald-700
+                        secondary: '#1e40af', // blue-800
+                        accent: '#10b981', // emerald-500
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-in-out',
+                        'slide-up': 'slideUp 0.5s ease-out',
+                        'slide-down': 'slideDown 0.5s ease-out',
+                        'float': 'float 3s ease-in-out infinite',
+                        'shimmer': 'shimmer 2s infinite linear',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(20px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        },
+                        slideDown: {
+                            '0%': { transform: 'translateY(-20px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        },
+                        shimmer: {
+                            '0%': { backgroundPosition: '-200px 0' },
+                            '100%': { backgroundPosition: 'calc(200px + 100%) 0' },
+                        },
+                    },
+                    backgroundImage: {
+                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+                        'gradient-shimmer': 'linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent)',
+                    }
+                }
+            }
+        }
+    </script>
 </head>
 
-<body class="bg-gray-50">
+<body class="bg-gray-50 overflow-x-hidden">
     <!-- Navigation -->
-    <nav class="bg-white text-blue-900 shadow-lg fixed w-full z-50" role="navigation" aria-label="Main Navigation">
+    <nav class="bg-white/95 backdrop-blur-md text-blue-900 shadow-lg fixed w-full z-50 animate-slide-down"
+        role="navigation" aria-label="Main Navigation">
         <div class="container mx-auto px-6 py-3">
             <div class="flex justify-between items-center">
-
-                <!-- Logo -->
-                <a href="#home" class="inline-block transition transform hover:scale-105" aria-label="Go to Home">
-                    <img src="images/logo.png" alt="EDMO Africa Trading Logo"
-                        class="h-12 w-auto md:h-14 object-contain">
+                <!-- Logo with hover effect -->
+                <a href="#home" class="group inline-block transition-all duration-300" aria-label="Go to Home">
+                    <div class="relative overflow-hidden rounded-lg p-2">
+                        <img src="images/logo.png" alt="EDMO Africa Trading Logo"
+                            class="h-12 w-auto md:h-14 object-contain transform group-hover:scale-105 transition-transform duration-300">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-r from-emerald-300/0 via-emerald-300/20 to-emerald-300/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000">
+                        </div>
+                    </div>
                 </a>
 
                 <!-- Mobile menu button + idiomas -->
                 <div class="md:hidden flex items-center space-x-3">
-                    <!-- Idiomas mobile -->
-                    <button onclick="translatePage('pt')"
-                        class="px-3 py-1 rounded-xl border border-gray-300 hover:bg-gray-100 transition text-base"
-                        aria-label="Português">
-                        🇵🇹
-                    </button>
-                    <button onclick="translatePage('en')"
-                        class="px-3 py-1 rounded-xl border border-gray-300 hover:bg-gray-100 transition text-base"
-                        aria-label="English">
-                        🇬🇧
-                    </button>
+                    <!-- Idioma buttons -->
+                    <div class="flex gap-2">
+                        <button onclick="translatePage('pt')"
+                            class="relative px-3 py-1 rounded-xl border border-gray-300 hover:border-emerald-300 hover:bg-emerald-50 transition-all duration-300 group overflow-hidden"
+                            aria-label="Português">
+                            <span class="relative z-10">🇵🇹</span>
+                            <div
+                                class="absolute inset-0 bg-emerald-300 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300">
+                            </div>
+                        </button>
+                        <button onclick="translatePage('en')"
+                            class="relative px-3 py-1 rounded-xl border border-gray-300 hover:border-emerald-300 hover:bg-emerald-50 transition-all duration-300 group overflow-hidden"
+                            aria-label="English">
+                            <span class="relative z-10">🇬🇧</span>
+                            <div
+                                class="absolute inset-0 bg-emerald-300 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300">
+                            </div>
+                        </button>
+                    </div>
 
-                    <!-- Botão menu -->
-                    <button class="outline-none mobile-menu-button" aria-label="Toggle navigation menu">
-                        <svg class="w-6 h-6 text-blue-900" fill="none" stroke="currentColor" stroke-width="2"
-                            viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M4 6h16M4 12h16M4 18h16" />
-                        </svg>
+                    <!-- Mobile menu button with animation -->
+                    <button
+                        class="relative w-10 h-10 flex flex-col items-center justify-center mobile-menu-button group"
+                        aria-label="Toggle navigation menu">
+                        <span
+                            class="block w-6 h-0.5 bg-blue-900 mb-1.5 transition-all duration-300 group-hover:bg-emerald-300 group-[.active]:rotate-45 group-[.active]:translate-y-2"></span>
+                        <span
+                            class="block w-6 h-0.5 bg-blue-900 transition-all duration-300 group-hover:bg-emerald-300 group-[.active]:opacity-0"></span>
+                        <span
+                            class="block w-6 h-0.5 bg-blue-900 mt-1.5 transition-all duration-300 group-hover:bg-emerald-300 group-[.active]:-rotate-45 group-[.active]:-translate-y-2"></span>
                     </button>
                 </div>
 
                 <!-- Desktop menu -->
                 <div class="hidden md:flex items-center space-x-8">
-                    <a href="#home" class="hover:text-emerald-300 transition">Home</a>
-                    <a href="#about" class="hover:text-emerald-300 transition">About</a>
-                    <a href="#services" class="hover:text-emerald-300 transition">Services</a>
-                    <a href="#timeline" class="hover:text-emerald-300 transition">Milestones</a>
-                    <a href="#team" class="hover:text-emerald-300 transition">Team</a>
+                    <!-- Navigation Links with hover effect -->
+                    <div class="flex space-x-8">
+                        <a href="#home"
+                            class="relative text-blue-900 hover:text-emerald-300 transition-colors duration-300 group">
+                            <span class="relative z-10">Home</span>
+                            <span
+                                class="absolute bottom-0 left-0 w-0 h-0.5 bg-emerald-300 group-hover:w-full transition-all duration-300"></span>
+                        </a>
+                        <a href="#about"
+                            class="relative text-blue-900 hover:text-emerald-300 transition-colors duration-300 group">
+                            <span class="relative z-10">About</span>
+                            <span
+                                class="absolute bottom-0 left-0 w-0 h-0.5 bg-emerald-300 group-hover:w-full transition-all duration-300"></span>
+                        </a>
+                        <a href="#services"
+                            class="relative text-blue-900 hover:text-emerald-300 transition-colors duration-300 group">
+                            <span class="relative z-10">Services</span>
+                            <span
+                                class="absolute bottom-0 left-0 w-0 h-0.5 bg-emerald-300 group-hover:w-full transition-all duration-300"></span>
+                        </a>
+                        <a href="#timeline"
+                            class="relative text-blue-900 hover:text-emerald-300 transition-colors duration-300 group">
+                            <span class="relative z-10">Milestones</span>
+                            <span
+                                class="absolute bottom-0 left-0 w-0 h-0.5 bg-emerald-300 group-hover:w-full transition-all duration-300"></span>
+                        </a>
+                        <a href="#team"
+                            class="relative text-blue-900 hover:text-emerald-300 transition-colors duration-300 group">
+                            <span class="relative z-10">Team</span>
+                            <span
+                                class="absolute bottom-0 left-0 w-0 h-0.5 bg-emerald-300 group-hover:w-full transition-all duration-300"></span>
+                        </a>
+                    </div>
+
+                    <!-- CTA Button with Magic UI effect -->
                     <a href="#contact"
-                        class="bg-emerald-300 hover:bg-emerald-500 text-white px-4 py-2 rounded-md transition">
-                        Contact Us
+                        class="relative overflow-hidden group bg-gradient-to-r from-emerald-300 to-emerald-400 hover:from-emerald-400 hover:to-emerald-500 text-white px-6 py-2.5 rounded-lg transition-all duration-300 transform hover:-translate-y-0.5 hover:shadow-lg hover:shadow-emerald-300/30">
+                        <span class="relative z-10">Contact Us</span>
+                        <div
+                            class="absolute inset-0 bg-gradient-to-r from-emerald-400 to-emerald-500 transform translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000">
+                        </div>
                     </a>
 
-                    <!-- Idiomas desktop -->
-                    <div class="flex gap-2 items-center text-sm">
+                    <!-- Idioma buttons desktop -->
+                    <div class="flex gap-2">
                         <button onclick="translatePage('pt')"
-                            class="px-3 py-1 rounded-xl border border-gray-300 hover:bg-gray-100 transition"
+                            class="relative px-3 py-1 rounded-xl border border-gray-300 hover:border-emerald-300 hover:bg-emerald-50 transition-all duration-300 group overflow-hidden"
                             aria-label="Português">
-                            🇵🇹
+                            <span class="relative z-10">🇵🇹</span>
+                            <div
+                                class="absolute inset-0 bg-emerald-300 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300">
+                            </div>
                         </button>
                         <button onclick="translatePage('en')"
-                            class="px-3 py-1 rounded-xl border border-gray-300 hover:bg-gray-100 transition"
+                            class="relative px-3 py-1 rounded-xl border border-gray-300 hover:border-emerald-300 hover:bg-emerald-50 transition-all duration-300 group overflow-hidden"
                             aria-label="English">
-                            🇬🇧
+                            <span class="relative z-10">🇬🇧</span>
+                            <div
+                                class="absolute inset-0 bg-emerald-300 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300">
+                            </div>
                         </button>
                     </div>
                 </div>
             </div>
 
-            <!-- Mobile menu -->
+            <!-- Mobile menu with slide animation -->
             <div class="mobile-menu hidden md:hidden">
-                <div class="flex flex-col space-y-4 mt-4 pb-4 px-4">
-                    <a href="#home" class="block px-4 py-2 hover:text-emerald-300 transition">Home</a>
-                    <a href="#about" class="block px-4 py-2 hover:text-emerald-300 transition">About</a>
-                    <a href="#services" class="block px-4 py-2 hover:text-emerald-300 transition">Services</a>
-                    <a href="#timeline" class="block px-4 py-2 hover:text-emerald-300 transition">Milestones</a>
-                    <a href="#team" class="block px-4 py-2 hover:text-emerald-300 transition">Team</a>
+                <div class="flex flex-col space-y-2 mt-4 pb-4 px-4 animate-fade-in">
+                    <a href="#home"
+                        class="block px-4 py-3 rounded-lg hover:bg-emerald-50 hover:text-emerald-300 transition-all duration-300 group">
+                        <i
+                            class="fas fa-home mr-3 text-emerald-300 group-hover:translate-x-1 transition-transform duration-300"></i>
+                        Home
+                    </a>
+                    <a href="#about"
+                        class="block px-4 py-3 rounded-lg hover:bg-emerald-50 hover:text-emerald-300 transition-all duration-300 group">
+                        <i
+                            class="fas fa-info-circle mr-3 text-emerald-300 group-hover:translate-x-1 transition-transform duration-300"></i>
+                        About
+                    </a>
+                    <a href="#services"
+                        class="block px-4 py-3 rounded-lg hover:bg-emerald-50 hover:text-emerald-300 transition-all duration-300 group">
+                        <i
+                            class="fas fa-cogs mr-3 text-emerald-300 group-hover:translate-x-1 transition-transform duration-300"></i>
+                        Services
+                    </a>
+                    <a href="#timeline"
+                        class="block px-4 py-3 rounded-lg hover:bg-emerald-50 hover:text-emerald-300 transition-all duration-300 group">
+                        <i
+                            class="fas fa-road mr-3 text-emerald-300 group-hover:translate-x-1 transition-transform duration-300"></i>
+                        Milestones
+                    </a>
+                    <a href="#team"
+                        class="block px-4 py-3 rounded-lg hover:bg-emerald-50 hover:text-emerald-300 transition-all duration-300 group">
+                        <i
+                            class="fas fa-users mr-3 text-emerald-300 group-hover:translate-x-1 transition-transform duration-300"></i>
+                        Team
+                    </a>
                     <a href="#contact"
-                        class="block px-4 py-2 text-center bg-emerald-300 hover:bg-emerald-500 text-white rounded transition">
+                        class="block px-4 py-3 text-center bg-gradient-to-r from-emerald-300 to-emerald-400 hover:from-emerald-400 hover:to-emerald-500 text-white rounded-lg transition-all duration-300 transform hover:scale-[1.02]">
+                        <i class="fas fa-paper-plane mr-2"></i>
                         Contact Us
                     </a>
                 </div>
@@ -103,33 +241,59 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero-bg pt-32 pb-20 md:pt-40 md:pb-32 text-white section" aria-label="Hero Section">
-        <div class="container mx-auto px-6">
-            <div class="max-w-3xl">
+    <!-- Hero Section with Parallax Effect -->
+    <section id="home" class="hero-bg pt-32 pb-20 md:pt-40 md:pb-32 text-white relative overflow-hidden section"
+        aria-label="Hero Section">
+        <!-- Animated background elements -->
+        <div class="absolute inset-0 bg-gradient-to-br from-blue-900/40 via-emerald-300/20 to-blue-900/40"></div>
+        <div class="absolute top-1/4 left-1/4 w-64 h-64 bg-emerald-300/10 rounded-full blur-3xl animate-float"></div>
+        <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-900/10 rounded-full blur-3xl animate-float"
+            style="animation-delay: 1.5s;"></div>
 
-                <!-- Headline -->
-                <h1 class="text-4xl md:text-5xl font-bold leading-tight mb-6">
-                    Procurement That Performs,<br />
-                    Logistics That Delivers
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="max-w-3xl animate-slide-up">
+                <!-- Animated headline -->
+                <h1 class="text-4xl md:text-6xl font-bold leading-tight mb-6">
+                    <span
+                        class="bg-gradient-to-r from-emerald-300 via-white to-emerald-300 bg-clip-text text-transparent bg-[length:200%_auto] animate-shimmer">
+                        Procurement That Performs,
+                    </span>
+                    <br />
+                    <span
+                        class="bg-gradient-to-r from-white via-emerald-300 to-white bg-clip-text text-transparent bg-[length:200%_auto] animate-shimmer"
+                        style="animation-delay: 1s;">
+                        Logistics That Delivers
+                    </span>
                 </h1>
 
                 <!-- Subheadline -->
-                <p class="text-xl mb-8 text-gray-200">
+                <p class="text-xl mb-10 text-gray-200 max-w-2xl">
                     Reliable cross-border procurement and logistics solutions between South Africa and Mozambique.
                 </p>
 
-                <!-- CTA Buttons -->
-                <div class="flex flex-col sm:flex-row sm:space-x-4 space-y-4 sm:space-y-0">
+                <!-- CTA Buttons with hover effects -->
+                <div class="flex flex-col sm:flex-row sm:space-x-6 space-y-6 sm:space-y-0">
                     <a href="#contact"
-                        class="bg-emerald-300 hover:bg-emerald-500 text-white font-bold py-3 px-6 rounded-md text-center transition duration-300"
-                        role="button" aria-label="Request a Quote">
-                        Get a Quote
+                        class="group relative overflow-hidden bg-gradient-to-r from-emerald-300 to-emerald-400 hover:from-emerald-400 hover:to-emerald-500 text-white font-bold py-4 px-8 rounded-xl text-center transition-all duration-300 transform hover:-translate-y-1 hover:shadow-2xl hover:shadow-emerald-300/30">
+                        <span class="relative z-10 flex items-center justify-center gap-2">
+                            <i class="fas fa-quote-right"></i>
+                            Get a Quote
+                        </span>
+                        <div
+                            class="absolute inset-0 bg-gradient-to-r from-emerald-400 to-emerald-500 transform translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000">
+                        </div>
                     </a>
+
                     <a href="#services"
-                        class="bg-transparent border-2 border-white hover:bg-white hover:text-blue-900 text-white font-bold py-3 px-6 rounded-md text-center transition duration-300"
-                        role="button" aria-label="View Our Services">
-                        Our Services
+                        class="group relative overflow-hidden bg-transparent border-2 border-white hover:border-emerald-300 text-white font-bold py-4 px-8 rounded-xl text-center transition-all duration-300 transform hover:-translate-y-1 hover:shadow-2xl">
+                        <span class="relative z-10 flex items-center justify-center gap-2">
+                            <i
+                                class="fas fa-arrow-right group-hover:translate-x-1 transition-transform duration-300"></i>
+                            Our Services
+                        </span>
+                        <div
+                            class="absolute inset-0 bg-white transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500">
+                        </div>
                     </a>
                 </div>
             </div>
@@ -137,44 +301,93 @@
     </section>
 
     <!-- About Section -->
-    <section id="about" class="py-16 bg-white section">
+    <section id="about" class="py-20 bg-gradient-to-b from-white to-gray-50 section">
         <div class="container mx-auto px-6">
-            <div class="flex flex-col md:flex-row items-center">
-                <div class="md:w-1/2 mb-10 md:mb-0 md:pr-10">
-                    <h2 class="text-3xl font-bold text-gray-800 mb-6">About EDMO Africa Trading</h2>
-                    <p class="text-gray-600 mb-4">
-                        EDMO Africa Trading Pty Ltd was founded by a team of experienced professionals who saw
-                        the potential for better, more efficient cross-border trade between Southern Africa and
-                        Mozambique. What began as a small family initiative focused on solving procurement and
-                        logistics challenges quickly grew into a trusted partner for businesses across the region.
-                        From humble beginnings, we’ve expanded our services across all provinces, dedicated to
-                        delivering reliable and cost-effective solutions. Our mission is to simplify the supply chain,
-                        bridge logistical gaps, and ensure that goods move seamlessly, helping businesses thrive
-                        across Africa.
-                    </p>
-                    <div class="p-6 rounded-lg border-l-4 border-emerald-300">
-                        <h3 class="text-xl font-semibold text-gray-800 mb-2">Our Vision</h3>
-                        <p class="text-gray-600">
-                            A vision needs to be explain further and in detail because it is one of
-                            main point about your future projection and your best goal. The company
-                            perspective can be seen on this session.
+            <div class="flex flex-col lg:flex-row items-center gap-12">
+                <!-- Left Content -->
+                <div class="lg:w-1/2 animate-slide-up">
+                    <div class="inline-block mb-4">
+                        <span class="text-emerald-300 font-bold text-sm uppercase tracking-wider">About Us</span>
+                        <div class="w-20 h-1 bg-gradient-to-r from-emerald-300 to-blue-900 rounded-full"></div>
+                    </div>
+
+                    <h2 class="text-4xl font-bold text-gray-800 mb-6">About EDMO Africa Trading</h2>
+
+                    <div class="space-y-6">
+                        <p class="text-gray-600 leading-relaxed">
+                            EDMO Africa Trading Pty Ltd was founded by a team of experienced professionals who saw the
+                            potential for better, more efficient cross-border trade between Southern Africa and
+                            Mozambique.
                         </p>
+
+                        <div
+                            class="bg-gradient-to-br from-emerald-50 to-white p-6 rounded-2xl border border-emerald-100 shadow-sm group hover:shadow-lg transition-all duration-300">
+                            <div class="flex items-start gap-4">
+                                <div
+                                    class="bg-emerald-100 p-3 rounded-xl group-hover:scale-110 transition-transform duration-300">
+                                    <i class="fas fa-eye text-emerald-300 text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-semibold text-gray-800 mb-2">Our Vision</h3>
+                                    <p class="text-gray-600">
+                                        To be Africa's most trusted partner in cross-border trade, creating seamless
+                                        connections that power sustainable growth across the continent.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="md:w-1/2">
-                    <div class="bg-blue-900 p-8 rounded-lg shadow-xl">
-                        <h3 class="text-2xl font-bold text-white mb-6">Our Mission</h3>
-                        <p class="text-white mb-6">
-                            Our mission is to redefine procurement and logistics in Southern Africa by delivering
-                            seamless, cross-border solutions that prioritize efficiency, reliability, and innovation. We
-                            aim to bridge the gap between businesses and opportunities, leveraging advanced
-                            systems and strategic networks to ensure goods and services flow smoothly across
-                            South Africa and Mozambique. At the core of our operations is a commitment to
-                            empowering our clients through tailored supply chain strategies, fostering economic
-                            development, and contributing to the growth of regional trade. Guided by integrity and a
-                            passion for excellence, we strive to build long-term partnerships that drive progress and
-                            create value for businesses and communities alike."
-                        </p>
+
+                <!-- Right Content -->
+                <div class="lg:w-1/2 animate-slide-up" style="animation-delay: 0.2s;">
+                    <div
+                        class="bg-gradient-to-br from-blue-900 to-blue-800 p-8 rounded-3xl shadow-2xl relative overflow-hidden group hover:shadow-blue-900/30 transition-shadow duration-300">
+                        <!-- Decorative elements -->
+                        <div
+                            class="absolute top-0 right-0 w-32 h-32 bg-emerald-300/10 rounded-full -translate-y-16 translate-x-16">
+                        </div>
+                        <div
+                            class="absolute bottom-0 left-0 w-48 h-48 bg-emerald-300/5 rounded-full -translate-x-16 translate-y-16">
+                        </div>
+
+                        <div class="relative z-10">
+                            <div class="inline-flex items-center gap-3 mb-6">
+                                <div class="bg-emerald-300 p-2 rounded-lg">
+                                    <i class="fas fa-bullseye text-blue-900 text-xl"></i>
+                                </div>
+                                <h3 class="text-2xl font-bold text-white">Our Mission</h3>
+                            </div>
+
+                            <div class="space-y-4">
+                                <p class="text-emerald-50 leading-relaxed">
+                                    To redefine procurement and logistics in Southern Africa through innovative,
+                                    reliable cross-border solutions.
+                                </p>
+
+                                <ul class="space-y-3">
+                                    <li class="flex items-start gap-3">
+                                        <i class="fas fa-check-circle text-emerald-300 mt-1"></i>
+                                        <span class="text-gray-200">Bridge logistical gaps between businesses and
+                                            opportunities</span>
+                                    </li>
+                                    <li class="flex items-start gap-3">
+                                        <i class="fas fa-check-circle text-emerald-300 mt-1"></i>
+                                        <span class="text-gray-200">Leverage advanced systems for seamless
+                                            operations</span>
+                                    </li>
+                                    <li class="flex items-start gap-3">
+                                        <i class="fas fa-check-circle text-emerald-300 mt-1"></i>
+                                        <span class="text-gray-200">Empower clients with tailored supply chain
+                                            strategies</span>
+                                    </li>
+                                    <li class="flex items-start gap-3">
+                                        <i class="fas fa-check-circle text-emerald-300 mt-1"></i>
+                                        <span class="text-gray-200">Foster economic development across the region</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -182,226 +395,521 @@
     </section>
 
     <!-- What to Expect Section -->
-    <section id="expect" class="py-16 bg-gray-50 section">
+    <section id="expect" class="py-20 bg-gradient-to-b from-gray-50 to-white section">
         <div class="container mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold text-gray-800 mb-4">What to Expect from Us</h2>
-                <div class="w-20 h-1 bg-emerald-300 mx-auto"></div>
+            <div class="text-center mb-16 animate-slide-up">
+                <div class="inline-block mb-4">
+                    <span class="text-emerald-300 font-bold text-sm uppercase tracking-wider">Why Choose Us</span>
+                    <div class="w-20 h-1 bg-gradient-to-r from-emerald-300 to-blue-900 rounded-full mx-auto"></div>
+                </div>
+                <h2 class="text-4xl font-bold text-gray-800 mb-6">What to Expect from Us</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto text-lg">
+                    We deliver excellence through every aspect of our service, ensuring your business needs are met with
+                    precision and care.
+                </p>
             </div>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="bg-white p-6 rounded-lg shadow-sm text-center hover:shadow-lg transition">
-                    <i class="fas fa-cogs text-emerald-300 text-4xl mb-4"></i>
-                    <h3 class="font-bold text-lg mb-2">Tailored Solutions</h3>
-                    <p class="text-gray-600">We design procurement and
-                        logistics services that align with your
-                        unique business needs, ensuring
-                        customized support every step of
-                        the way</p>
+
+            <!-- Features Grid -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div
+                    class="group bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:border-emerald-300 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 animate-slide-up">
+                    <div class="relative mb-6">
+                        <div
+                            class="w-16 h-16 bg-gradient-to-br from-emerald-300 to-emerald-400 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                            <i class="fas fa-cogs text-white text-2xl"></i>
+                        </div>
+                        <div
+                            class="absolute -top-2 -right-2 w-8 h-8 bg-blue-900 rounded-full flex items-center justify-center">
+                            <span class="text-white text-xs font-bold">01</span>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Tailored Solutions</h3>
+                    <p class="text-gray-600">
+                        We design procurement and logistics services that align with your unique business needs,
+                        ensuring customized support every step of the way.
+                    </p>
                 </div>
-                <div class="bg-white p-6 rounded-lg shadow-sm text-center hover:shadow-lg transition">
-                    <i class="fas fa-clock text-emerald-300 text-4xl mb-4"></i>
-                    <h3 class="font-bold text-lg mb-2">Timely Deliveries</h3>
-                    <p class="text-gray-600">Your goods will arrive on schedule,
-                        every time—our focus is on
-                        minimizing delays and maximizing
-                        efficiency</p>
+
+                <!-- Feature 2 -->
+                <div class="group bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:border-emerald-300 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 animate-slide-up"
+                    style="animation-delay: 0.1s;">
+                    <div class="relative mb-6">
+                        <div
+                            class="w-16 h-16 bg-gradient-to-br from-emerald-300 to-emerald-400 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                            <i class="fas fa-clock text-white text-2xl"></i>
+                        </div>
+                        <div
+                            class="absolute -top-2 -right-2 w-8 h-8 bg-blue-900 rounded-full flex items-center justify-center">
+                            <span class="text-white text-xs font-bold">02</span>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Timely Deliveries</h3>
+                    <p class="text-gray-600">
+                        Your goods will arrive on schedule, every time—our focus is on minimizing delays and maximizing
+                        efficiency.
+                    </p>
                 </div>
-                <div class="bg-white p-6 rounded-lg shadow-sm text-center hover:shadow-lg transition">
-                    <i class="fas fa-globe-africa text-emerald-300 text-4xl mb-4"></i>
-                    <h3 class="font-bold text-lg mb-2">Cross-Border Operations</h3>
-                    <p class="text-gray-600">Our expertise in cross-border logistics
-                        ensures smooth operations between
-                        South Africa and Mozambique, removing
-                        barriers and simplifying trade.</p>
+
+                <!-- Feature 3 -->
+                <div class="group bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:border-emerald-300 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 animate-slide-up"
+                    style="animation-delay: 0.2s;">
+                    <div class="relative mb-6">
+                        <div
+                            class="w-16 h-16 bg-gradient-to-br from-emerald-300 to-emerald-400 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                            <i class="fas fa-globe-africa text-white text-2xl"></i>
+                        </div>
+                        <div
+                            class="absolute -top-2 -right-2 w-8 h-8 bg-blue-900 rounded-full flex items-center justify-center">
+                            <span class="text-white text-xs font-bold">03</span>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Cross-Border Operations</h3>
+                    <p class="text-gray-600">
+                        Our expertise in cross-border logistics ensures smooth operations between South Africa and
+                        Mozambique.
+                    </p>
                 </div>
-                <div class="bg-white p-6 rounded-lg shadow-sm text-center hover:shadow-lg transition">
-                    <i class="fas fa-check-circle text-emerald-300 text-4xl mb-4"></i>
-                    <h3 class="font-bold text-lg mb-2">Reliability You Can Trust</h3>
-                    <p class="text-gray-600">We deliver on our promises with
-                        consistent, dependable service that
-                        builds long-term partnerships.</p>
+
+                <!-- Feature 4 -->
+                <div class="group bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:border-emerald-300 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 animate-slide-up"
+                    style="animation-delay: 0.3s;">
+                    <div class="relative mb-6">
+                        <div
+                            class="w-16 h-16 bg-gradient-to-br from-emerald-300 to-emerald-400 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                            <i class="fas fa-check-circle text-white text-2xl"></i>
+                        </div>
+                        <div
+                            class="absolute -top-2 -right-2 w-8 h-8 bg-blue-900 rounded-full flex items-center justify-center">
+                            <span class="text-white text-xs font-bold">04</span>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Reliability You Can Trust</h3>
+                    <p class="text-gray-600">
+                        We deliver on our promises with consistent, dependable service that builds long-term
+                        partnerships.
+                    </p>
                 </div>
-                <div class="bg-white p-6 rounded-lg shadow-sm text-center hover:shadow-lg transition">
-                    <i class="fas fa-truck text-emerald-300 text-4xl mb-4"></i>
-                    <h3 class="font-bold text-lg mb-2">Quality Fleet and Staff</h3>
-                    <p class="text-gray-600">With a highly skilled team and a
-                        modern, well-maintained fleet, we
-                        ensure efficient, safe, and reliable
-                        transportation of your goods.</p>
+
+                <!-- Feature 5 -->
+                <div class="group bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:border-emerald-300 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 animate-slide-up"
+                    style="animation-delay: 0.4s;">
+                    <div class="relative mb-6">
+                        <div
+                            class="w-16 h-16 bg-gradient-to-br from-emerald-300 to-emerald-400 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                            <i class="fas fa-truck text-white text-2xl"></i>
+                        </div>
+                        <div
+                            class="absolute -top-2 -right-2 w-8 h-8 bg-blue-900 rounded-full flex items-center justify-center">
+                            <span class="text-white text-xs font-bold">05</span>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Quality Fleet and Staff</h3>
+                    <p class="text-gray-600">
+                        With a highly skilled team and a modern, well-maintained fleet, we ensure efficient, safe, and
+                        reliable transportation.
+                    </p>
                 </div>
-                <div class="bg-white p-6 rounded-lg shadow-sm text-center hover:shadow-lg transition">
-                    <i class="fas fa-comments text-emerald-300 text-4xl mb-4"></i>
-                    <h3 class="font-bold text-lg mb-2">Transparent Communication</h3>
-                    <p class="text-gray-600">We keep you informed at every stage,
-                        providing clear updates and maintaining
-                        open lines of communication.</p>
+
+                <!-- Feature 6 -->
+                <div class="group bg-white p-8 rounded-2xl shadow-sm border border-gray-100 hover:border-emerald-300 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 animate-slide-up"
+                    style="animation-delay: 0.5s;">
+                    <div class="relative mb-6">
+                        <div
+                            class="w-16 h-16 bg-gradient-to-br from-emerald-300 to-emerald-400 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                            <i class="fas fa-comments text-white text-2xl"></i>
+                        </div>
+                        <div
+                            class="absolute -top-2 -right-2 w-8 h-8 bg-blue-900 rounded-full flex items-center justify-center">
+                            <span class="text-white text-xs font-bold">06</span>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-800 mb-3">Transparent Communication</h3>
+                    <p class="text-gray-600">
+                        We keep you informed at every stage, providing clear updates and maintaining open lines of
+                        communication.
+                    </p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Services Section -->
-    <section id="services" class="py-16 bg-white section">
+    <section id="services" class="py-20 bg-gradient-to-b from-white to-gray-50 section">
         <div class="container mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold text-gray-800 mb-4">Our Core Services</h2>
-                <div class="w-20 h-1 bg-emerald-300 mx-auto"></div>
+            <div class="text-center mb-16 animate-slide-up">
+                <div class="inline-block mb-4">
+                    <span class="text-emerald-300 font-bold text-sm uppercase tracking-wider">Our Services</span>
+                    <div class="w-20 h-1 bg-gradient-to-r from-emerald-300 to-blue-900 rounded-full mx-auto"></div>
+                </div>
+                <h2 class="text-4xl font-bold text-gray-800 mb-6">Our Core Services</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto text-lg">
+                    Comprehensive procurement and logistics solutions designed to meet your specific business needs.
+                </p>
             </div>
 
             <div class="grid md:grid-cols-2 gap-8">
                 <!-- Service 1 -->
                 <div
-                    class="service-card bg-white p-8 rounded-lg shadow-md transition duration-300 hover:border-blue-900 border-b-4 border-transparent">
-                    <div class="text-blue-900 mb-4">
-                        <i class="fas fa-shopping-cart text-4xl"></i>
+                    class="group bg-gradient-to-br from-white to-gray-50 p-8 rounded-3xl shadow-lg border border-gray-100 hover:border-emerald-300 transition-all duration-500 transform hover:-translate-y-2 animate-slide-up">
+                    <div class="relative mb-6">
+                        <div
+                            class="w-20 h-20 bg-gradient-to-br from-blue-900 to-blue-800 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                            <i class="fas fa-shopping-cart text-emerald-300 text-3xl"></i>
+                        </div>
+                        <div
+                            class="absolute -top-3 -right-3 w-12 h-12 bg-emerald-300 rounded-2xl flex items-center justify-center transform rotate-12 group-hover:rotate-45 transition-transform duration-300">
+                            <i class="fas fa-plus text-white"></i>
+                        </div>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-800 mb-3">Essential Procurement Services</h3>
-                    <p class="text-gray-600">
-                        We provide cost-effective procurement
-                        solutions for everyday goods, including
-                        groceries, personal shopping items, and other
-                        essential products. Our services are designed for
-                        efficiency and convenience, offering clients a
-                        reliable and affordable option for managing their
-                        everyday supply needs.
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Essential Procurement Services</h3>
+                    <p class="text-gray-600 mb-6">
+                        We provide cost-effective procurement solutions for everyday goods, including groceries,
+                        personal shopping items, and other essential products.
                     </p>
+                    <ul class="space-y-2 mb-6">
+                        <li class="flex items-center gap-2 text-gray-700">
+                            <i class="fas fa-check-circle text-emerald-300"></i>
+                            <span>Grocery and essential items procurement</span>
+                        </li>
+                        <li class="flex items-center gap-2 text-gray-700">
+                            <i class="fas fa-check-circle text-emerald-300"></i>
+                            <span>Personal shopping services</span>
+                        </li>
+                        <li class="flex items-center gap-2 text-gray-700">
+                            <i class="fas fa-check-circle text-emerald-300"></i>
+                            <span>Cost-effective solutions</span>
+                        </li>
+                    </ul>
+                    <a href="#contact"
+                        class="inline-flex items-center gap-2 text-emerald-300 font-medium hover:text-emerald-400 transition-colors duration-300 group/link">
+                        Get Started
+                        <i
+                            class="fas fa-arrow-right group-hover/link:translate-x-1 transition-transform duration-300"></i>
+                    </a>
                 </div>
 
                 <!-- Service 2 -->
-                <div
-                    class="service-card bg-white p-8 rounded-lg shadow-md transition duration-300 hover:border-blue-900 border-b-4 border-transparent">
-                    <div class="text-blue-900 mb-4">
-                        <i class="fas fa-industry text-4xl"></i>
+                <div class="group bg-gradient-to-br from-white to-gray-50 p-8 rounded-3xl shadow-lg border border-gray-100 hover:border-emerald-300 transition-all duration-500 transform hover:-translate-y-2 animate-slide-up"
+                    style="animation-delay: 0.1s;">
+                    <div class="relative mb-6">
+                        <div
+                            class="w-20 h-20 bg-gradient-to-br from-blue-900 to-blue-800 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                            <i class="fas fa-industry text-emerald-300 text-3xl"></i>
+                        </div>
+                        <div
+                            class="absolute -top-3 -right-3 w-12 h-12 bg-emerald-300 rounded-2xl flex items-center justify-center transform rotate-12 group-hover:rotate-45 transition-transform duration-300">
+                            <i class="fas fa-plus text-white"></i>
+                        </div>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-800 mb-3">Industrial Procurement Solutions</h3>
-                    <p class="text-gray-600">
-                        We provide cost-effective procurement solutions for everyday goods, including groceries,
-                        personal shopping items, and other essential products. Our services are designed for efficiency
-                        and convenience, offering clients a reliable and affordable option for managing their everyday
-                        supply needs.
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Industrial Procurement Solutions</h3>
+                    <p class="text-gray-600 mb-6">
+                        Specialized procurement for industrial equipment, machinery, and materials with a focus on
+                        quality and reliability.
                     </p>
+                    <ul class="space-y-2 mb-6">
+                        <li class="flex items-center gap-2 text-gray-700">
+                            <i class="fas fa-check-circle text-emerald-300"></i>
+                            <span>Industrial equipment sourcing</span>
+                        </li>
+                        <li class="flex items-center gap-2 text-gray-700">
+                            <i class="fas fa-check-circle text-emerald-300"></i>
+                            <span>Machinery procurement</span>
+                        </li>
+                        <li class="flex items-center gap-2 text-gray-700">
+                            <i class="fas fa-check-circle text-emerald-300"></i>
+                            <span>Quality assurance guaranteed</span>
+                        </li>
+                    </ul>
+                    <a href="#contact"
+                        class="inline-flex items-center gap-2 text-emerald-300 font-medium hover:text-emerald-400 transition-colors duration-300 group/link">
+                        Get Started
+                        <i
+                            class="fas fa-arrow-right group-hover/link:translate-x-1 transition-transform duration-300"></i>
+                    </a>
                 </div>
 
                 <!-- Service 3 -->
-                <div
-                    class="service-card bg-white p-8 rounded-lg shadow-md transition duration-300 hover:border-blue-900 border-b-4 border-transparent">
-                    <div class="text-blue-900 mb-4">
-                        <i class="fas fa-shipping-fast text-4xl"></i>
+                <div class="group bg-gradient-to-br from-white to-gray-50 p-8 rounded-3xl shadow-lg border border-gray-100 hover:border-emerald-300 transition-all duration-500 transform hover:-translate-y-2 animate-slide-up"
+                    style="animation-delay: 0.2s;">
+                    <div class="relative mb-6">
+                        <div
+                            class="w-20 h-20 bg-gradient-to-br from-blue-900 to-blue-800 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                            <i class="fas fa-shipping-fast text-emerald-300 text-3xl"></i>
+                        </div>
+                        <div
+                            class="absolute -top-3 -right-3 w-12 h-12 bg-emerald-300 rounded-2xl flex items-center justify-center transform rotate-12 group-hover:rotate-45 transition-transform duration-300">
+                            <i class="fas fa-plus text-white"></i>
+                        </div>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-800 mb-3">Logistics Services</h3>
-                    <p class="text-gray-600">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Logistics Services</h3>
+                    <p class="text-gray-600 mb-6">
                         Comprehensive transportation solutions including warehousing, inventory management, and customs
                         handling for seamless cross-border operations.
                     </p>
+                    <ul class="space-y-2 mb-6">
+                        <li class="flex items-center gap-2 text-gray-700">
+                            <i class="fas fa-check-circle text-emerald-300"></i>
+                            <span>Warehousing and storage</span>
+                        </li>
+                        <li class="flex items-center gap-2 text-gray-700">
+                            <i class="fas fa-check-circle text-emerald-300"></i>
+                            <span>Customs clearance assistance</span>
+                        </li>
+                        <li class="flex items-center gap-2 text-gray-700">
+                            <i class="fas fa-check-circle text-emerald-300"></i>
+                            <span>Inventory management</span>
+                        </li>
+                    </ul>
+                    <a href="#contact"
+                        class="inline-flex items-center gap-2 text-emerald-300 font-medium hover:text-emerald-400 transition-colors duration-300 group/link">
+                        Get Started
+                        <i
+                            class="fas fa-arrow-right group-hover/link:translate-x-1 transition-transform duration-300"></i>
+                    </a>
                 </div>
 
                 <!-- Service 4 -->
-                <div
-                    class="service-card bg-white p-8 rounded-lg shadow-md transition duration-300 hover:border-blue-900 border-b-4 border-transparent">
-                    <div class="text-blue-900 mb-4">
-                        <i class="fas fa-people-carry text-4xl"></i>
+                <div class="group bg-gradient-to-br from-white to-gray-50 p-8 rounded-3xl shadow-lg border border-gray-100 hover:border-emerald-300 transition-all duration-500 transform hover:-translate-y-2 animate-slide-up"
+                    style="animation-delay: 0.3s;">
+                    <div class="relative mb-6">
+                        <div
+                            class="w-20 h-20 bg-gradient-to-br from-blue-900 to-blue-800 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                            <i class="fas fa-people-carry text-emerald-300 text-3xl"></i>
+                        </div>
+                        <div
+                            class="absolute -top-3 -right-3 w-12 h-12 bg-emerald-300 rounded-2xl flex items-center justify-center transform rotate-12 group-hover:rotate-45 transition-transform duration-300">
+                            <i class="fas fa-plus text-white"></i>
+                        </div>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-800 mb-3">Extended Services</h3>
-                    <p class="text-gray-600">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-4">Extended Services</h3>
+                    <p class="text-gray-600 mb-6">
                         Border assistance, shuttle services, travel guidance, and even school admission support - we go
                         beyond traditional logistics to meet all your needs.
                     </p>
+                    <ul class="space-y-2 mb-6">
+                        <li class="flex items-center gap-2 text-gray-700">
+                            <i class="fas fa-check-circle text-emerald-300"></i>
+                            <span>Border crossing assistance</span>
+                        </li>
+                        <li class="flex items-center gap-2 text-gray-700">
+                            <i class="fas fa-check-circle text-emerald-300"></i>
+                            <span>Travel and shuttle services</span>
+                        </li>
+                        <li class="flex items-center gap-2 text-gray-700">
+                            <i class="fas fa-check-circle text-emerald-300"></i>
+                            <span>Comprehensive support solutions</span>
+                        </li>
+                    </ul>
+                    <a href="#contact"
+                        class="inline-flex items-center gap-2 text-emerald-300 font-medium hover:text-emerald-400 transition-colors duration-300 group/link">
+                        Get Started
+                        <i
+                            class="fas fa-arrow-right group-hover/link:translate-x-1 transition-transform duration-300"></i>
+                    </a>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Stats Section -->
-    <section class="py-16 bg-blue-900 text-white section">
-        <div class="container mx-auto px-6">
-            <div class="grid md:grid-cols-4 gap-8 text-center">
-                <div class="p-6">
-                    <div class="text-4xl font-bold text-emerald-300 mb-2">4+</div>
-                    <div class="text-gray-300">Years Experience</div>
+    <section
+        class="py-20 bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 text-white relative overflow-hidden section">
+        <!-- Animated background -->
+        <div class="absolute inset-0">
+            <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-emerald-300/5 rounded-full blur-3xl animate-float"></div>
+            <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-emerald-300/5 rounded-full blur-3xl animate-float"
+                style="animation-delay: 2s;"></div>
+        </div>
+
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Stat 1 -->
+                <div class="text-center group animate-slide-up">
+                    <div class="relative inline-block mb-4">
+                        <div
+                            class="w-24 h-24 rounded-full border-4 border-emerald-300/30 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
+                            <div class="text-4xl font-bold text-emerald-300">4+</div>
+                        </div>
+                        <div
+                            class="absolute inset-0 rounded-full border-4 border-transparent border-t-emerald-300 animate-spin">
+                        </div>
+                    </div>
+                    <div class="text-2xl font-bold text-white mb-2">Years Experience</div>
+                    <p class="text-emerald-200">Trusted expertise since 2020</p>
                 </div>
-                <div class="p-6">
-                    <div class="text-4xl font-bold text-emerald-300 mb-2">100%</div>
-                    <div class="text-gray-300">Client Satisfaction</div>
+
+                <!-- Stat 2 -->
+                <div class="text-center group animate-slide-up" style="animation-delay: 0.1s;">
+                    <div class="relative inline-block mb-4">
+                        <div
+                            class="w-24 h-24 rounded-full border-4 border-emerald-300/30 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
+                            <div class="text-4xl font-bold text-emerald-300">100%</div>
+                        </div>
+                        <div class="absolute inset-0 rounded-full border-4 border-transparent border-t-emerald-300 animate-spin"
+                            style="animation-delay: 0.5s;"></div>
+                    </div>
+                    <div class="text-2xl font-bold text-white mb-2">Client Satisfaction</div>
+                    <p class="text-emerald-200">Exceeding expectations</p>
                 </div>
-                <div class="p-6">
-                    <div class="text-4xl font-bold text-emerald-300 mb-2">11</div>
-                    <div class="text-gray-300">Mozambican Provinces Covered</div>
+
+                <!-- Stat 3 -->
+                <div class="text-center group animate-slide-up" style="animation-delay: 0.2s;">
+                    <div class="relative inline-block mb-4">
+                        <div
+                            class="w-24 h-24 rounded-full border-4 border-emerald-300/30 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
+                            <div class="text-4xl font-bold text-emerald-300">11</div>
+                        </div>
+                        <div class="absolute inset-0 rounded-full border-4 border-transparent border-t-emerald-300 animate-spin"
+                            style="animation-delay: 1s;"></div>
+                    </div>
+                    <div class="text-2xl font-bold text-white mb-2">Provinces Covered</div>
+                    <p class="text-emerald-200">Nationwide Mozambique reach</p>
                 </div>
-                <div class="p-6">
-                    <div class="text-4xl font-bold text-emerald-300 mb-2">24/7</div>
-                    <div class="text-gray-300">Customer Support</div>
+
+                <!-- Stat 4 -->
+                <div class="text-center group animate-slide-up" style="animation-delay: 0.3s;">
+                    <div class="relative inline-block mb-4">
+                        <div
+                            class="w-24 h-24 rounded-full border-4 border-emerald-300/30 flex items-center justify-center group-hover:scale-110 transition-transform duration-500">
+                            <div class="text-4xl font-bold text-emerald-300">24/7</div>
+                        </div>
+                        <div class="absolute inset-0 rounded-full border-4 border-transparent border-t-emerald-300 animate-spin"
+                            style="animation-delay: 1.5s;"></div>
+                    </div>
+                    <div class="text-2xl font-bold text-white mb-2">Customer Support</div>
+                    <p class="text-emerald-200">Always here for you</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Timeline Section -->
-    <section id="timeline" class="py-16 bg-white section">
+    <section id="timeline" class="py-20 bg-gradient-to-b from-gray-50 to-white section">
         <div class="container mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold text-gray-800 mb-4">Our Journey</h2>
-                <div class="w-20 h-1 bg-emerald-300 mx-auto"></div>
+            <div class="text-center mb-16 animate-slide-up">
+                <div class="inline-block mb-4">
+                    <span class="text-emerald-300 font-bold text-sm uppercase tracking-wider">Our Journey</span>
+                    <div class="w-20 h-1 bg-gradient-to-r from-emerald-300 to-blue-900 rounded-full mx-auto"></div>
+                </div>
+                <h2 class="text-4xl font-bold text-gray-800 mb-6">Our Milestones</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto text-lg">
+                    A timeline of growth, innovation, and commitment to excellence in cross-border trade.
+                </p>
             </div>
 
-            <div class="relative">
+            <div class="relative max-w-4xl mx-auto">
+                <!-- Timeline line -->
+                <div
+                    class="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-emerald-300 via-blue-900 to-emerald-300">
+                </div>
+
                 <!-- Timeline Item 1 -->
-                <div class="timeline-item mb-8 pl-8 relative">
-                    <div class="absolute left-0 w-4 h-4 bg-emerald-300 rounded-full z-10"></div>
-                    <div class="bg-blue-100 p-6 rounded-lg shadow-sm">
-                        <div class="font-bold text-emerald-300 mb-1">2020</div>
-                        <h3 class="text-xl font-bold text-gray-800 mb-2">Foundations of Excellence</h3>
-                        <p class="text-gray-600">
-                            Founded with a focus on providing
-                            reliable procurement and logistics
-                            services across South Africa and
-                            Mozambique.
-                        </p>
+                <div class="mb-12 animate-slide-up">
+                    <div class="flex items-center">
+                        <div class="w-1/2 pr-12 text-right">
+                            <div
+                                class="bg-white p-6 rounded-2xl shadow-lg border border-gray-100 hover:border-emerald-300 transition-all duration-300">
+                                <div class="inline-flex items-center gap-2 mb-3">
+                                    <div class="w-3 h-3 bg-emerald-300 rounded-full"></div>
+                                    <span class="font-bold text-emerald-300">2020</span>
+                                </div>
+                                <h3 class="text-xl font-bold text-gray-800 mb-2">Foundations of Excellence</h3>
+                                <p class="text-gray-600">
+                                    Founded with a focus on providing reliable procurement and logistics services across
+                                    South Africa and Mozambique.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="absolute left-1/2 transform -translate-x-1/2">
+                            <div
+                                class="w-8 h-8 bg-emerald-300 rounded-full border-4 border-white shadow-lg flex items-center justify-center">
+                                <i class="fas fa-rocket text-white text-sm"></i>
+                            </div>
+                        </div>
+                        <div class="w-1/2 pl-12"></div>
                     </div>
                 </div>
 
                 <!-- Timeline Item 2 -->
-                <div class="timeline-item mb-8 pl-8 relative">
-                    <div class="absolute left-0 w-4 h-4 bg-emerald-300 rounded-full z-10"></div>
-                    <div class="bg-emerald-100 p-6 rounded-lg shadow-sm">
-                        <div class="font-bold text-emerald-300 mb-1">2022</div>
-                        <h3 class="text-xl font-bold text-gray-800 mb-2">Regional Expansion</h3>
-                        <p class="text-gray-600">
-                            Expanded operations to all Mozambican
-                            provinces, establishing a reputation for
-                            efficiency and cross-border expertise.
-                        </p>
+                <div class="mb-12 animate-slide-up" style="animation-delay: 0.1s;">
+                    <div class="flex items-center">
+                        <div class="w-1/2 pr-12"></div>
+                        <div class="absolute left-1/2 transform -translate-x-1/2">
+                            <div
+                                class="w-8 h-8 bg-emerald-300 rounded-full border-4 border-white shadow-lg flex items-center justify-center">
+                                <i class="fas fa-expand text-white text-sm"></i>
+                            </div>
+                        </div>
+                        <div class="w-1/2 pl-12">
+                            <div
+                                class="bg-white p-6 rounded-2xl shadow-lg border border-gray-100 hover:border-emerald-300 transition-all duration-300">
+                                <div class="inline-flex items-center gap-2 mb-3">
+                                    <div class="w-3 h-3 bg-emerald-300 rounded-full"></div>
+                                    <span class="font-bold text-emerald-300">2022</span>
+                                </div>
+                                <h3 class="text-xl font-bold text-gray-800 mb-2">Regional Expansion</h3>
+                                <p class="text-gray-600">
+                                    Expanded operations to all Mozambican provinces, establishing a reputation for
+                                    efficiency and cross-border expertise.
+                                </p>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Timeline Item 3 -->
-                <div class="timeline-item mb-8 pl-8 relative">
-                    <div class="absolute left-0 w-4 h-4 bg-emerald-300 rounded-full z-10"></div>
-                    <div class="bg-gray-100 p-6 rounded-lg shadow-sm">
-                        <div class="font-bold text-emerald-300 mb-1">2023</div>
-                        <h3 class="text-xl font-bold text-gray-800 mb-2">Diversification in Services</h3>
-                        <p class="text-gray-600">
-                            Launched new services, including
-                            border clearing assistance and vehicle
-                            transport, to meet growing client
-                            demands.
-                        </p>
+                <div class="mb-12 animate-slide-up" style="animation-delay: 0.2s;">
+                    <div class="flex items-center">
+                        <div class="w-1/2 pr-12 text-right">
+                            <div
+                                class="bg-white p-6 rounded-2xl shadow-lg border border-gray-100 hover:border-emerald-300 transition-all duration-300">
+                                <div class="inline-flex items-center gap-2 mb-3">
+                                    <div class="w-3 h-3 bg-emerald-300 rounded-full"></div>
+                                    <span class="font-bold text-emerald-300">2023</span>
+                                </div>
+                                <h3 class="text-xl font-bold text-gray-800 mb-2">Diversification in Services</h3>
+                                <p class="text-gray-600">
+                                    Launched new services, including border clearing assistance and vehicle transport,
+                                    to meet growing client demands.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="absolute left-1/2 transform -translate-x-1/2">
+                            <div
+                                class="w-8 h-8 bg-emerald-300 rounded-full border-4 border-white shadow-lg flex items-center justify-center">
+                                <i class="fas fa-layer-group text-white text-sm"></i>
+                            </div>
+                        </div>
+                        <div class="w-1/2 pl-12"></div>
                     </div>
                 </div>
 
                 <!-- Timeline Item 4 -->
-                <div class="timeline-item pl-8 relative">
-                    <div class="absolute left-0 w-4 h-4 bg-emerald-300 rounded-full z-10"></div>
-                    <div class="bg-white p-6 rounded-lg shadow-sm">
-                        <div class="font-bold text-emerald-300 mb-1">2024</div>
-                        <h3 class="text-xl font-bold text-gray-800 mb-2">Driving Innovation</h3>
-                        <p class="text-gray-600">
-                            Invested in a modern fleet to enhance
-                            service reliability and launched travel
-                            guidance and shuttle services.
-                            Participated in a community cleanup
-                            initiative, strengthening our commitment to
-                            environmental sustainability.
-                        </p>
+                <div class="animate-slide-up" style="animation-delay: 0.3s;">
+                    <div class="flex items-center">
+                        <div class="w-1/2 pr-12"></div>
+                        <div class="absolute left-1/2 transform -translate-x-1/2">
+                            <div
+                                class="w-8 h-8 bg-emerald-300 rounded-full border-4 border-white shadow-lg flex items-center justify-center">
+                                <i class="fas fa-bolt text-white text-sm"></i>
+                            </div>
+                        </div>
+                        <div class="w-1/2 pl-12">
+                            <div
+                                class="bg-white p-6 rounded-2xl shadow-lg border border-gray-100 hover:border-emerald-300 transition-all duration-300">
+                                <div class="inline-flex items-center gap-2 mb-3">
+                                    <div class="w-3 h-3 bg-emerald-300 rounded-full"></div>
+                                    <span class="font-bold text-emerald-300">2024</span>
+                                </div>
+                                <h3 class="text-xl font-bold text-gray-800 mb-2">Driving Innovation</h3>
+                                <p class="text-gray-600">
+                                    Invested in a modern fleet and launched travel guidance services. Participated in
+                                    community cleanup initiatives, strengthening our commitment to environmental
+                                    sustainability.
+                                </p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -409,408 +917,665 @@
     </section>
 
     <!-- Partners Section -->
-    <section id="partners" class="py-16 bg-gray-50 section">
+    <section id="partners" class="py-20 bg-gradient-to-b from-white to-gray-50 section">
         <div class="container mx-auto px-6">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold text-gray-800 mb-4">Our Partners</h2>
-                <div class="w-20 h-1 bg-emerald-300 mx-auto"></div>
-                <p class="text-gray-600 max-w-2xl mx-auto mt-4">
-                    We collaborate with trusted market partners across South Africa ,Mozambique and the
-                    rest of the Word to deliver seamless procurement and logistics solutions. These
-                    partnerships enable us to leverage local expertise, expand our reach, and ensure the
-                    highest standards of service for our clients. Together, we drive efficiency, reliability, and
-                    mutual growth in every project we undertake.
+            <div class="text-center mb-16 animate-slide-up">
+                <div class="inline-block mb-4">
+                    <span class="text-emerald-300 font-bold text-sm uppercase tracking-wider">Partnerships</span>
+                    <div class="w-20 h-1 bg-gradient-to-r from-emerald-300 to-blue-900 rounded-full mx-auto"></div>
+                </div>
+                <h2 class="text-4xl font-bold text-gray-800 mb-6">Trusted by Industry Leaders</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto text-lg">
+                    We collaborate with trusted market partners across Southern Africa to deliver seamless procurement
+                    and logistics solutions.
                 </p>
             </div>
 
-            <!-- Carousel Wrapper -->
-            <div class="relative overflow-hidden">
-                <!-- Carousel Inner -->
-                <div id="partnerCarousel" class="flex transition-transform duration-500 ease-in-out">
-                    <div class="min-w-full flex justify-center">
-                        <img src="images/ayuda-en-accion.png" class="h-64" loading="lazy">
-                    </div>
-                    <div class="min-w-full flex justify-center">
-                        <img src="images/bci.png" class="h-64" loading="lazy">
-                    </div>
-                    <div class="min-w-full flex justify-center">
-                        <img src="images/cdm.png" class="h-64" loading="lazy">
-                    </div>
-                    <div class="min-w-full flex justify-center">
-                        <img src="images/cummins.png" class="h-64" loading="lazy">
-                    </div>
-                    <div class="min-w-full flex justify-center">
-                        <img src="images/cvm.png" class="h-64" loading="lazy">
-                    </div>
-                    <div class="min-w-full flex justify-center">
-                        <img src="images/dupont.png" class="h-64" loading="lazy">
-                    </div>
-                    <div class="min-w-full flex justify-center">
-                        <img src="images/fedexpng.png" class="h-64" loading="lazy">
-                    </div>
-                    <div class="min-w-full flex justify-center">
-                        <img src="images/Fipag.png" class="h-64" loading="lazy">
-                    </div>
-                    <div class="min-w-full flex justify-center">
-                        <img src="images/Honeywell-Logo.png" class="h-64" loading="lazy">
-                    </div>
-                    <div class="min-w-full flex justify-center">
-                        <img src="images/Intercape-Logo.png" class="h-64" loading="lazy">
-                    </div>
-                    <div class="min-w-full flex justify-center">
-                        <img src="images/kb.png" class="h-64" loading="lazy">
-                    </div>
-                    <div class="min-w-full flex justify-center">
-                        <img src="images/logo-dhl.png" class="h-64" loading="lazy">
-                    </div>
-                    <div class="min-w-full flex justify-center">
-                        <img src="images/msf.png" class="h-64" loading="lazy">
-                    </div>
-                    <div class="min-w-full flex justify-center">
-                        <img src="images/pd.png" class="h-64" loading="lazy">
-                    </div>
-                    <div class="min-w-full flex justify-center">
-                        <img src="images/pna.png" class="h-64" loading="lazy">
-                    </div>
-                    <div class="min-w-full flex justify-center">
-                        <img src="images/stc.png" class="h-64" loading="lazy">
-                    </div>
-                    <div class="min-w-full flex justify-center">
-                        <img src="images/tcg.png" class="h-64" loading="lazy">
-                    </div>
-                    <div class="min-w-full flex justify-center">
-                        <img src="images/tmcel.png" class="h-64" loading="lazy">
-                    </div>
-                    <div class="min-w-full flex justify-center">
-                        <img src="images/UD-Trucks-Logo.png" class="h-64" loading="lazy">
-                    </div>
-                    <div class="min-w-full flex justify-center">
-                        <img src="images/unicef.png" class="h-64" loading="lazy">
-                    </div>
-                    <div class="min-w-full flex justify-center">
-                        <img src="images/waltons.png" class="h-64" loading="lazy">
-                    </div>
-                    <div class="min-w-full flex justify-center">
-                        <img src="images/woodmead.png" class="h-64" loading="lazy">
+            <!-- Clean Auto Carousel Wrapper -->
+            <div class="relative">
+                <div class="auto-carousel-container overflow-hidden">
+                    <!-- Auto-scrolling Carousel -->
+                    <div id="autoCarousel" class="flex">
+                        <!-- Partner logos will be inserted here -->
                     </div>
                 </div>
 
-                <!-- Navigation Arrows -->
-                <button id="prevBtn"
-                    class="absolute top-1/2 left-4 transform -translate-y-1/2 bg-blue-900 text-white p-2 rounded-full hover:bg-emerald-300 transition">
-                    <i class="fas fa-chevron-left"></i>
-                </button>
-                <button id="nextBtn"
-                    class="absolute top-1/2 right-4 transform -translate-y-1/2 bg-blue-900 text-white p-2 rounded-full hover:bg-emerald-300 transition">
-                    <i class="fas fa-chevron-right"></i>
-                </button>
+                <!-- Subtle gradient overlays -->
+                <div
+                    class="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-white to-transparent pointer-events-none">
+                </div>
+                <div
+                    class="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-white to-transparent pointer-events-none">
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Client Documents Section -->
-    <section class="py-16 bg-blue-900 text-white section">
+    <!-- Companies and Suppliers Documents Section -->
+    <section id="documents" class="py-20 bg-gradient-to-b from-blue-50 to-white section">
         <div class="container mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold mb-4">Companies and Suppliers Documents</h2>
-                <div class="w-20 h-1 bg-emerald-300 mx-auto"></div>
-                <p class="text-blue-100 mt-4 max-w-2xl mx-auto">
-                    Here are official PDF documents and certificates provided by our valued suppliers and companies we
-                    work with.
-                    You can view or download them directly.
+            <div class="text-center mb-16 animate-slide-up">
+                <div class="inline-block mb-4">
+                    <span class="text-emerald-300 font-bold text-sm uppercase tracking-wider">Certifications</span>
+                    <div class="w-20 h-1 bg-gradient-to-r from-emerald-300 to-blue-900 rounded-full mx-auto"></div>
+                </div>
+                <h2 class="text-4xl font-bold text-gray-800 mb-6">Companies and Suppliers Documents</h2>
+                <p class="text-gray-600 max-w-3xl mx-auto text-lg">
+                    Official certificates and recommendation letters from our valued partners and suppliers.
+                    All documents are available for download in PDF format.
                 </p>
             </div>
 
-            <div class="grid md:grid-cols-3 gap-8">
+            <!-- Documents Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Document 1 -->
-                <div class="bg-white bg-opacity-20 p-6 rounded-lg shadow-md text-center">
-                    <i class="fas fa-file-pdf text-red-500 text-5xl mb-4"></i>
-                    <h4 class="font-bold text-lg mb-2">Afritool Moçambique Lda</h4>
-                    <p class="text-blue-100 mb-4">Official recommendation certificate for our services</p>
-                    <a href="docs/Afritool.pdf" target="_blank"
-                        class="bg-emerald-300 hover:bg-emerald-500 text-white px-4 py-2 rounded-md inline-block transition">
-                        View PDF
-                    </a>
+                <div class="group animate-slide-up">
+                    <div
+                        class="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-100 hover:border-emerald-300 h-full flex flex-col">
+                        <div class="p-6 flex-grow">
+                            <div class="flex items-start justify-between mb-4">
+                                <div
+                                    class="p-3 bg-emerald-50 rounded-xl group-hover:scale-110 transition-transform duration-300">
+                                    <i class="fas fa-receipt text-emerald-300 text-2xl"></i>
+                                </div>
+                                <span
+                                    class="px-3 py-1 bg-blue-100 text-blue-700 text-sm font-medium rounded-full">PDF</span>
+                            </div>
+
+                            <h3 class="text-xl font-bold text-gray-800 mb-3">Afritool Moçambique Lda</h3>
+                            <p class="text-gray-600 mb-6">
+                                Official recommendation certificate for our procurement and logistics services.
+                            </p>
+
+                            <div class="flex items-center text-sm text-gray-500 mb-4">
+                                <i class="fas fa-calendar-alt mr-2"></i>
+                                <span>Issued: January 2024</span>
+                            </div>
+
+                            <div class="flex items-center text-sm text-gray-500">
+                                <i class="fas fa-file-pdf mr-2"></i>
+                                <span>File size: 2.4 MB</span>
+                            </div>
+                        </div>
+
+                        <div class="p-6 pt-0 mt-auto">
+                            <a href="docs/Afritool.pdf" target="_blank"
+                                class="group/btn w-full inline-flex items-center justify-center gap-2 bg-gradient-to-r from-emerald-300 to-emerald-400 hover:from-emerald-400 hover:to-emerald-500 text-white font-medium py-3 px-6 rounded-xl transition-all duration-300 transform hover:-translate-y-0.5 hover:shadow-lg hover:shadow-emerald-300/30">
+                                <i class="fas fa-eye"></i>
+                                View Document
+                                <i
+                                    class="fas fa-arrow-right group-hover/btn:translate-x-1 transition-transform duration-300"></i>
+                            </a>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Document 2 -->
-                <div class="bg-white bg-opacity-20 p-6 rounded-lg shadow-md text-center">
-                    <i class="fas fa-file-pdf text-red-500 text-5xl mb-4"></i>
-                    <h4 class="font-bold text-lg mb-2">DCC Technologies</h4>
-                    <p class="text-blue-100 mb-4">Authorised reseller confirmation for our company</p>
-                    <a href="docs/DCC.pdf" target="_blank"
-                        class="bg-emerald-300 hover:bg-emerald-500 text-white px-4 py-2 rounded-md inline-block transition">
-                        View PDF
-                    </a>
+                <div class="group animate-slide-up" style="animation-delay: 0.1s;">
+                    <div
+                        class="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-100 hover:border-emerald-300 h-full flex flex-col">
+                        <div class="p-6 flex-grow">
+                            <div class="flex items-start justify-between mb-4">
+                                <div
+                                    class="p-3 bg-emerald-50 rounded-xl group-hover:scale-110 transition-transform duration-300">
+                                    <i class="fas fa-award text-emerald-300 text-2xl"></i>
+                                </div>
+                                <span
+                                    class="px-3 py-1 bg-blue-100 text-blue-700 text-sm font-medium rounded-full">PDF</span>
+                            </div>
+
+                            <h3 class="text-xl font-bold text-gray-800 mb-3">DCC Technologies</h3>
+                            <p class="text-gray-600 mb-6">
+                                Authorized reseller confirmation and partnership agreement documentation.
+                            </p>
+
+                            <div class="flex items-center text-sm text-gray-500 mb-4">
+                                <i class="fas fa-calendar-alt mr-2"></i>
+                                <span>Issued: March 2024</span>
+                            </div>
+
+                            <div class="flex items-center text-sm text-gray-500">
+                                <i class="fas fa-file-pdf mr-2"></i>
+                                <span>File size: 1.8 MB</span>
+                            </div>
+                        </div>
+
+                        <div class="p-6 pt-0 mt-auto">
+                            <a href="docs/DCC.pdf" target="_blank"
+                                class="group/btn w-full inline-flex items-center justify-center gap-2 bg-gradient-to-r from-emerald-300 to-emerald-400 hover:from-emerald-400 hover:to-emerald-500 text-white font-medium py-3 px-6 rounded-xl transition-all duration-300 transform hover:-translate-y-0.5 hover:shadow-lg hover:shadow-emerald-300/30">
+                                <i class="fas fa-eye"></i>
+                                View Document
+                                <i
+                                    class="fas fa-arrow-right group-hover/btn:translate-x-1 transition-transform duration-300"></i>
+                            </a>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Document 3 -->
-                <div class="bg-white bg-opacity-20 p-6 rounded-lg shadow-md text-center">
-                    <i class="fas fa-file-pdf text-red-500 text-5xl mb-4"></i>
-                    <h4 class="font-bold text-lg mb-2">DENMAC</h4>
-                    <p class="text-blue-100 mb-4">Recommendation letter for our company</p>
-                    <a href="docs/Denmac.pdf" target="_blank"
-                        class="bg-emerald-300 hover:bg-emerald-500 text-white px-4 py-2 rounded-md inline-block transition">
-                        View PDF
-                    </a>
+                <div class="group animate-slide-up" style="animation-delay: 0.2s;">
+                    <div
+                        class="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-100 hover:border-emerald-300 h-full flex flex-col">
+                        <div class="p-6 flex-grow">
+                            <div class="flex items-start justify-between mb-4">
+                                <div
+                                    class="p-3 bg-emerald-50 rounded-xl group-hover:scale-110 transition-transform duration-300">
+                                    <i class="fas fa-handshake text-emerald-300 text-2xl"></i>
+                                </div>
+                                <span
+                                    class="px-3 py-1 bg-blue-100 text-blue-700 text-sm font-medium rounded-full">PDF</span>
+                            </div>
+
+                            <h3 class="text-xl font-bold text-gray-800 mb-3">DENMAC</h3>
+                            <p class="text-gray-600 mb-6">
+                                Recommendation letter highlighting our reliable cross-border logistics services.
+                            </p>
+
+                            <div class="flex items-center text-sm text-gray-500 mb-4">
+                                <i class="fas fa-calendar-alt mr-2"></i>
+                                <span>Issued: February 2024</span>
+                            </div>
+
+                            <div class="flex items-center text-sm text-gray-500">
+                                <i class="fas fa-file-pdf mr-2"></i>
+                                <span>File size: 3.2 MB</span>
+                            </div>
+                        </div>
+
+                        <div class="p-6 pt-0 mt-auto">
+                            <a href="docs/Denmac.pdf" target="_blank"
+                                class="group/btn w-full inline-flex items-center justify-center gap-2 bg-gradient-to-r from-emerald-300 to-emerald-400 hover:from-emerald-400 hover:to-emerald-500 text-white font-medium py-3 px-6 rounded-xl transition-all duration-300 transform hover:-translate-y-0.5 hover:shadow-lg hover:shadow-emerald-300/30">
+                                <i class="fas fa-eye"></i>
+                                View Document
+                                <i
+                                    class="fas fa-arrow-right group-hover/btn:translate-x-1 transition-transform duration-300"></i>
+                            </a>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Document 4 -->
-                <div class="bg-white bg-opacity-20 p-6 rounded-lg shadow-md text-center">
-                    <i class="fas fa-file-pdf text-red-500 text-5xl mb-4"></i>
-                    <h4 class="font-bold text-lg mb-2">HIRSCH'S</h4>
-                    <p class="text-blue-100 mb-4">Confirmation letter as a customer of Hirsch's.</p>
-                    <a href="docs/Hirsch.pdf" target="_blank"
-                        class="bg-emerald-300 hover:bg-emerald-500 text-white px-4 py-2 rounded-md inline-block transition">
-                        View PDF
-                    </a>
+                <div class="group animate-slide-up" style="animation-delay: 0.3s;">
+                    <div
+                        class="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-100 hover:border-emerald-300 h-full flex flex-col">
+                        <div class="p-6 flex-grow">
+                            <div class="flex items-start justify-between mb-4">
+                                <div
+                                    class="p-3 bg-emerald-50 rounded-xl group-hover:scale-110 transition-transform duration-300">
+                                    <i class="fas fa-certificate text-emerald-300 text-2xl"></i>
+                                </div>
+                                <span
+                                    class="px-3 py-1 bg-blue-100 text-blue-700 text-sm font-medium rounded-full">PDF</span>
+                            </div>
+
+                            <h3 class="text-xl font-bold text-gray-800 mb-3">HIRSCH'S</h3>
+                            <p class="text-gray-600 mb-6">
+                                Official confirmation letter as an authorized customer and procurement partner.
+                            </p>
+
+                            <div class="flex items-center text-sm text-gray-500 mb-4">
+                                <i class="fas fa-calendar-alt mr-2"></i>
+                                <span>Issued: December 2023</span>
+                            </div>
+
+                            <div class="flex items-center text-sm text-gray-500">
+                                <i class="fas fa-file-pdf mr-2"></i>
+                                <span>File size: 2.1 MB</span>
+                            </div>
+                        </div>
+
+                        <div class="p-6 pt-0 mt-auto">
+                            <a href="docs/Hirsch.pdf" target="_blank"
+                                class="group/btn w-full inline-flex items-center justify-center gap-2 bg-gradient-to-r from-emerald-300 to-emerald-400 hover:from-emerald-400 hover:to-emerald-500 text-white font-medium py-3 px-6 rounded-xl transition-all duration-300 transform hover:-translate-y-0.5 hover:shadow-lg hover:shadow-emerald-300/30">
+                                <i class="fas fa-eye"></i>
+                                View Document
+                                <i
+                                    class="fas fa-arrow-right group-hover/btn:translate-x-1 transition-transform duration-300"></i>
+                            </a>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Document 5 -->
-                <div class="bg-white bg-opacity-20 p-6 rounded-lg shadow-md text-center">
-                    <i class="fas fa-file-pdf text-red-500 text-5xl mb-4"></i>
-                    <h4 class="font-bold text-lg mb-2">Sinfo</h4>
-                    <p class="text-blue-100 mb-4">Letter of recommendation</p>
-                    <a href="docs/Sinfo.pdf" target="_blank"
-                        class="bg-emerald-300 hover:bg-emerald-500 text-white px-4 py-2 rounded-md inline-block transition">
-                        View PDF
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
+                <div class="group animate-slide-up" style="animation-delay: 0.4s;">
+                    <div
+                        class="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-100 hover:border-emerald-300 h-full flex flex-col">
+                        <div class="p-6 flex-grow">
+                            <div class="flex items-start justify-between mb-4">
+                                <div
+                                    class="p-3 bg-emerald-50 rounded-xl group-hover:scale-110 transition-transform duration-300">
+                                    <i class="fas fa-file-contract text-emerald-300 text-2xl"></i>
+                                </div>
+                                <span
+                                    class="px-3 py-1 bg-blue-100 text-blue-700 text-sm font-medium rounded-full">PDF</span>
+                            </div>
 
-    <!-- Super Team Section -->
-    <section id="team" class="py-16 bg-white section">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold text-gray-800 mb-4">Our Super Team</h2>
-                <div class="w-20 h-1 bg-emerald-300 mx-auto"></div>
-                <p class="text-gray-600 max-w-2xl mx-auto mt-4">
-                    At Edmo Africa Trading, our team is the heart of our success. We foster a culture
-                    of collaboration, innovation, and mutual respect, ensuring every member brings
-                    their best to the table. Our chemistry drives efficiency, creativity, and adaptability.
-                </p>
-            </div>
+                            <h3 class="text-xl font-bold text-gray-800 mb-3">Sinfo</h3>
+                            <p class="text-gray-600 mb-6">
+                                Letter of recommendation for our industrial procurement and logistics solutions.
+                            </p>
 
-            <!-- Team Stats -->
-            <div class="grid md:grid-cols-3 gap-8 mb-12 text-center">
-                <div class="bg-emerald-300 p-8 rounded-lg shadow-sm hover:shadow-lg transition">
-                    <div class="text-4xl font-bold text-blue-900 mb-2">92%</div>
-                    <p class="text-blue-900">Team Effective
-                        Level Percentage</p>
+                            <div class="flex items-center text-sm text-gray-500 mb-4">
+                                <i class="fas fa-calendar-alt mr-2"></i>
+                                <span>Issued: April 2024</span>
+                            </div>
+
+                            <div class="flex items-center text-sm text-gray-500">
+                                <i class="fas fa-file-pdf mr-2"></i>
+                                <span>File size: 2.7 MB</span>
+                            </div>
+                        </div>
+
+                        <div class="p-6 pt-0 mt-auto">
+                            <a href="docs/Sinfo.pdf" target="_blank"
+                                class="group/btn w-full inline-flex items-center justify-center gap-2 bg-gradient-to-r from-emerald-300 to-emerald-400 hover:from-emerald-400 hover:to-emerald-500 text-white font-medium py-3 px-6 rounded-xl transition-all duration-300 transform hover:-translate-y-0.5 hover:shadow-lg hover:shadow-emerald-300/30">
+                                <i class="fas fa-eye"></i>
+                                View Document
+                                <i
+                                    class="fas fa-arrow-right group-hover/btn:translate-x-1 transition-transform duration-300"></i>
+                            </a>
+                        </div>
+                    </div>
                 </div>
-                <div class="bg-gray-50 p-8 rounded-lg shadow-sm hover:shadow-lg transition">
-                    <div class="text-4xl font-bold text-gray-900 mb-2">96%</div>
-                    <p class="text-gray-900">Healthy Office
-                        Ecosystem Percentage</p>
-                </div>
-                <div class="bg-blue-900 p-8 rounded-lg shadow-sm hover:shadow-lg transition">
-                    <div class="text-4xl font-bold text-emerald-300 mb-2">91%</div>
-                    <p class="text-emerald-300">Chemistry
-                        Level Percentage</p>
+
+                <!-- Document 6 (Optional Additional) -->
+                <div class="group animate-slide-up" style="animation-delay: 0.5s;">
+                    <div
+                        class="bg-gradient-to-br from-blue-900 to-blue-800 text-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border border-blue-700 h-full flex flex-col relative">
+                        <!-- Decorative elements -->
+                        <div
+                            class="absolute top-0 right-0 w-32 h-32 bg-emerald-300/10 rounded-full -translate-y-16 translate-x-16">
+                        </div>
+                        <div
+                            class="absolute bottom-0 left-0 w-48 h-48 bg-emerald-300/5 rounded-full -translate-x-16 translate-y-16">
+                        </div>
+
+                        <div class="p-6 flex-grow relative z-10">
+                            <div class="flex items-start justify-between mb-4">
+                                <div
+                                    class="p-3 bg-emerald-300/20 rounded-xl group-hover:scale-110 transition-transform duration-300">
+                                    <i class="fas fa-folder-plus text-emerald-300 text-2xl"></i>
+                                </div>
+                                <span
+                                    class="px-3 py-1 bg-emerald-300/20 text-emerald-300 text-sm font-medium rounded-full">More</span>
+                            </div>
+
+                            <h3 class="text-xl font-bold text-white mb-3">Additional Documentation</h3>
+                            <p class="text-emerald-50 mb-6">
+                                Access our complete portfolio of certificates, licenses, and partnership agreements.
+                            </p>
+
+                            <ul class="space-y-3 mb-6">
+                                <li class="flex items-center gap-2 text-emerald-200">
+                                    <i class="fas fa-check-circle text-emerald-300"></i>
+                                    <span>Business licenses</span>
+                                </li>
+                                <li class="flex items-center gap-2 text-emerald-200">
+                                    <i class="fas fa-check-circle text-emerald-300"></i>
+                                    <span>Tax compliance certificates</span>
+                                </li>
+                                <li class="flex items-center gap-2 text-emerald-200">
+                                    <i class="fas fa-check-circle text-emerald-300"></i>
+                                    <span>Insurance documentation</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="p-6 pt-0 mt-auto relative z-10">
+                            <a href="#contact"
+                                class="group/btn w-full inline-flex items-center justify-center gap-2 bg-white hover:bg-emerald-50 text-blue-900 font-medium py-3 px-6 rounded-xl transition-all duration-300 transform hover:-translate-y-0.5 hover:shadow-lg">
+                                <i class="fas fa-envelope"></i>
+                                Request Access
+                                <i
+                                    class="fas fa-arrow-right group-hover/btn:translate-x-1 transition-transform duration-300"></i>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-16 bg-gray-50 section">
+    <section id="contact" class="py-20 bg-gradient-to-b from-gray-50 to-white section">
         <div class="container mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold text-gray-800 mb-4">Get In Touch</h2>
-                <div class="w-20 h-1 bg-emerald-300 mx-auto"></div>
+            <div class="text-center mb-16 animate-slide-up">
+                <div class="inline-block mb-4">
+                    <span class="text-emerald-300 font-bold text-sm uppercase tracking-wider">Contact Us</span>
+                    <div class="w-20 h-1 bg-gradient-to-r from-emerald-300 to-blue-900 rounded-full mx-auto"></div>
+                </div>
+                <h2 class="text-4xl font-bold text-gray-800 mb-6">Get In Touch</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto text-lg">
+                    Ready to streamline your cross-border operations? Reach out to our team today.
+                </p>
             </div>
 
-            <div class="flex flex-col md:flex-row">
-                <div class="md:w-1/2 mb-10 md:mb-0 md:pr-10">
-                    <h3 class="text-xl font-bold text-gray-800 mb-6">Contact Information</h3>
+            <div class="flex flex-col lg:flex-row gap-12">
+                <!-- Contact Info -->
+                <div class="lg:w-2/5 animate-slide-up">
+                    <div
+                        class="bg-gradient-to-br from-white to-gray-50 rounded-3xl p-8 shadow-xl border border-gray-100 sticky top-24">
+                        <h3 class="text-2xl font-bold text-gray-800 mb-8">Contact Information</h3>
 
-                    <div class="space-y-6">
-                        <div class="flex items-start">
-                            <div class="text-emerald-300 mr-4 mt-1">
-                                <i class="fas fa-map-marker-alt text-xl"></i>
+                        <div class="space-y-8">
+                            <!-- Address -->
+                            <div class="flex items-start gap-4 group">
+                                <div
+                                    class="bg-emerald-100 p-3 rounded-xl group-hover:scale-110 transition-transform duration-300">
+                                    <i class="fas fa-map-marker-alt text-emerald-300 text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800 mb-1">Address</h4>
+                                    <p class="text-gray-600">
+                                        Av. Marginal N9149A, Triunfo, Cowork7,<br>
+                                        Maputo, Mozambique
+                                    </p>
+                                </div>
                             </div>
-                            <div>
-                                <h4 class="font-bold text-gray-800 mb-1">Address</h4>
-                                <p class="text-gray-600">
-                                    Av. Marginal N9149A, Triunfo, Cowork7, <br>
-                                    Maputo, Mozambique
-                                </p>
+
+                            <!-- Phone -->
+                            <div class="flex items-start gap-4 group">
+                                <div
+                                    class="bg-emerald-100 p-3 rounded-xl group-hover:scale-110 transition-transform duration-300">
+                                    <i class="fas fa-phone-alt text-emerald-300 text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800 mb-1">Phone</h4>
+                                    <p class="text-gray-600 space-y-1">
+                                        <span class="block">+258 84 486 2630</span>
+                                        <span class="block">+258 87 606 3000</span>
+                                        <span class="block">+277 3577 6411</span>
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- Email -->
+                            <div class="flex items-start gap-4 group">
+                                <div
+                                    class="bg-emerald-100 p-3 rounded-xl group-hover:scale-110 transition-transform duration-300">
+                                    <i class="fas fa-envelope text-emerald-300 text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800 mb-1">Email</h4>
+                                    <a href="mailto:geral@edmoafricatrading.com"
+                                        class="text-emerald-300 hover:text-emerald-400 transition-colors duration-300">
+                                        geral@edmoafricatrading.com
+                                    </a>
+                                </div>
                             </div>
                         </div>
 
-                        <div class="flex items-start">
-                            <div class="text-emerald-300 mr-4 mt-1">
-                                <i class="fas fa-phone-alt text-xl"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-gray-800 mb-1">Phone</h4>
-                                <p class="text-gray-600">+258 84 486 2630 <br> +258 87 606 3000 <br>
-                                    +277 3577 6411</p>
-                            </div>
-                        </div>
-
-                        <div class="flex items-start">
-                            <div class="text-emerald-300 mr-4 mt-1">
-                                <i class="fas fa-envelope text-xl"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-gray-800 mb-1">Email</h4>
-                                <p class="text-gray-600">geral@edmoafricatrading.com</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="mt-10">
-                        <h3 class="text-xl font-bold text-gray-800 mb-6">Business Hours</h3>
-                        <div class="bg-white p-6 rounded-lg shadow-sm">
-                            <div class="flex justify-between py-2 border-b border-gray-200">
-                                <span class="text-gray-600">Monday - Friday</span>
-                                <span class="font-medium">9:00 AM - 7:00 PM</span>
-                            </div>
-                            <div class="flex justify-between py-2 border-b border-gray-200">
-                                <span class="text-gray-600">Saturday</span>
-                                <span class="font-medium">9:00 AM - 2:00 PM</span>
-                            </div>
-                            <div class="flex justify-between py-2">
-                                <span class="text-gray-600">Sunday</span>
-                                <span class="font-medium">Emergency Only</span>
-                            </div>
-                            <div class="mt-6 bg-emerald-50 p-4 rounded-lg">
-                                <div class="flex">
-                                    <div class="mr-3 text-emerald-600">
-                                        <i class="fas fa-info-circle text-xl"></i>
+                        <!-- Business Hours -->
+                        <div class="mt-12 pt-8 border-t border-gray-200">
+                            <h3 class="text-xl font-bold text-gray-800 mb-6">Business Hours</h3>
+                            <div class="bg-gradient-to-br from-emerald-50 to-white p-6 rounded-2xl">
+                                <div class="space-y-4">
+                                    <div class="flex justify-between items-center py-2">
+                                        <span class="text-gray-600">Monday - Friday</span>
+                                        <span
+                                            class="font-medium bg-emerald-100 text-emerald-700 px-3 py-1 rounded-lg">9:00
+                                            AM - 7:00 PM</span>
                                     </div>
-                                    <p class="text-emerald-800">Our 24/7 emergency line is available for urgent
-                                        shipments
-                                        outside operating hours.</p>
+                                    <div class="flex justify-between items-center py-2">
+                                        <span class="text-gray-600">Saturday</span>
+                                        <span
+                                            class="font-medium bg-emerald-100 text-emerald-700 px-3 py-1 rounded-lg">9:00
+                                            AM - 2:00 PM</span>
+                                    </div>
+                                    <div class="flex justify-between items-center py-2">
+                                        <span class="text-gray-600">Sunday</span>
+                                        <span class="font-medium bg-red-100 text-red-700 px-3 py-1 rounded-lg">Emergency
+                                            Only</span>
+                                    </div>
+                                </div>
+                                <div class="mt-6 bg-blue-900/5 p-4 rounded-xl">
+                                    <div class="flex items-start gap-3">
+                                        <i class="fas fa-info-circle text-emerald-300 text-xl mt-1"></i>
+                                        <p class="text-emerald-800">
+                                            Our 24/7 emergency line is available for urgent shipments outside operating
+                                            hours.
+                                        </p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="md:w-1/2">
-                    <form id="whatsappForm" class="bg-white p-8 rounded-lg shadow-md">
-                        <div class="mb-6">
-                            <label for="name" class="block text-gray-700 font-medium mb-2">Your Name</label>
-                            <input type="text" id="name" required
-                                class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-300">
-                        </div>
+                <!-- Contact Form -->
+                <div class="lg:w-3/5 animate-slide-up" style="animation-delay: 0.1s;">
+                    <div
+                        class="bg-gradient-to-br from-white to-gray-50 rounded-3xl p-8 shadow-xl border border-gray-100">
+                        <form id="whatsappForm" class="space-y-6">
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <!-- Name -->
+                                <div class="group">
+                                    <label for="name" class="block text-gray-700 font-medium mb-2">Your Name *</label>
+                                    <div class="relative">
+                                        <input type="text" id="name" required
+                                            class="w-full px-4 py-3 bg-white border border-gray-300 rounded-xl focus:outline-none focus:border-emerald-300 focus:ring-2 focus:ring-emerald-300/20 transition-all duration-300"
+                                            placeholder="John Doe">
+                                        <div
+                                            class="absolute inset-0 rounded-xl border-2 border-transparent group-hover:border-emerald-300/30 transition-all duration-300 pointer-events-none">
+                                        </div>
+                                    </div>
+                                </div>
 
-                        <div class="mb-6">
-                            <label for="email" class="block text-gray-700 font-medium mb-2">Email Address</label>
-                            <input type="email" id="email"
-                                class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-300">
-                        </div>
+                                <!-- Email -->
+                                <div class="group">
+                                    <label for="email" class="block text-gray-700 font-medium mb-2">Email
+                                        Address</label>
+                                    <div class="relative">
+                                        <input type="email" id="email"
+                                            class="w-full px-4 py-3 bg-white border border-gray-300 rounded-xl focus:outline-none focus:border-emerald-300 focus:ring-2 focus:ring-emerald-300/20 transition-all duration-300"
+                                            placeholder="john@example.com">
+                                        <div
+                                            class="absolute inset-0 rounded-xl border-2 border-transparent group-hover:border-emerald-300/30 transition-all duration-300 pointer-events-none">
+                                        </div>
+                                    </div>
+                                </div>
 
-                        <div class="mb-6">
-                            <label for="phone" class="block text-gray-700 font-medium mb-2">Phone Number</label>
-                            <input type="tel" id="phone" required
-                                class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-300">
-                        </div>
+                                <!-- Phone -->
+                                <div class="group">
+                                    <label for="phone" class="block text-gray-700 font-medium mb-2">Phone Number
+                                        *</label>
+                                    <div class="relative">
+                                        <input type="tel" id="phone" required
+                                            class="w-full px-4 py-3 bg-white border border-gray-300 rounded-xl focus:outline-none focus:border-emerald-300 focus:ring-2 focus:ring-emerald-300/20 transition-all duration-300"
+                                            placeholder="+258 84 486 2630">
+                                        <div
+                                            class="absolute inset-0 rounded-xl border-2 border-transparent group-hover:border-emerald-300/30 transition-all duration-300 pointer-events-none">
+                                        </div>
+                                    </div>
+                                </div>
 
-                        <div class="mb-6">
-                            <label for="service" class="block text-gray-700 font-medium mb-2">Service Needed</label>
-                            <select id="service" required
-                                class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-300">
-                                <option value="">Select a service</option>
-                                <option value="Industrial Procurement">Industrial Procurement</option>
-                                <option value="Logistics Services">Logistics Services</option>
-                                <option value="Border Assistance">Border Assistance</option>
-                                <option value="Other Services">Other Services</option>
-                            </select>
-                        </div>
+                                <!-- Service -->
+                                <div class="group">
+                                    <label for="service" class="block text-gray-700 font-medium mb-2">Service Needed
+                                        *</label>
+                                    <div class="relative">
+                                        <select id="service" required
+                                            class="w-full px-4 py-3 bg-white border border-gray-300 rounded-xl focus:outline-none focus:border-emerald-300 focus:ring-2 focus:ring-emerald-300/20 transition-all duration-300 appearance-none">
+                                            <option value="">Select a service</option>
+                                            <option value="Industrial Procurement">Industrial Procurement</option>
+                                            <option value="Logistics Services">Logistics Services</option>
+                                            <option value="Border Assistance">Border Assistance</option>
+                                            <option value="Other Services">Other Services</option>
+                                        </select>
+                                        <div
+                                            class="absolute right-4 top-1/2 transform -translate-y-1/2 pointer-events-none">
+                                            <i class="fas fa-chevron-down text-gray-400"></i>
+                                        </div>
+                                        <div
+                                            class="absolute inset-0 rounded-xl border-2 border-transparent group-hover:border-emerald-300/30 transition-all duration-300 pointer-events-none">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
-                        <div class="mb-6">
-                            <label for="message" class="block text-gray-700 font-medium mb-2">Your Message</label>
-                            <textarea id="message" rows="4" required
-                                class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-emerald-500"></textarea>
-                        </div>
+                            <!-- Message -->
+                            <div class="group">
+                                <label for="message" class="block text-gray-700 font-medium mb-2">Your Message *</label>
+                                <div class="relative">
+                                    <textarea id="message" rows="5" required
+                                        class="w-full px-4 py-3 bg-white border border-gray-300 rounded-xl focus:outline-none focus:border-emerald-300 focus:ring-2 focus:ring-emerald-300/20 transition-all duration-300 resize-none"
+                                        placeholder="Tell us about your requirements..."></textarea>
+                                    <div
+                                        class="absolute inset-0 rounded-xl border-2 border-transparent group-hover:border-emerald-300/30 transition-all duration-300 pointer-events-none">
+                                    </div>
+                                </div>
+                            </div>
 
-                        <button type="submit"
-                            class="w-full bg-transparent border border-green-500 hover:bg-green-500 text-green-500 hover:text-white font-bold py-3 px-4 rounded-md transition duration-300 flex items-center justify-center gap-2">
-                            <i class="fab fa-whatsapp text-xl"></i> Send via WhatsApp
-                        </button>
-                    </form>
+                            <!-- Submit Button -->
+                            <button type="submit"
+                                class="group relative w-full bg-gradient-to-r from-emerald-300 to-emerald-400 hover:from-emerald-400 hover:to-emerald-500 text-white font-bold py-4 px-6 rounded-xl transition-all duration-300 transform hover:-translate-y-0.5 hover:shadow-lg hover:shadow-emerald-300/30 overflow-hidden">
+                                <span class="relative z-10 flex items-center justify-center gap-3 text-lg">
+                                    <i class="fab fa-whatsapp text-xl"></i>
+                                    Send via WhatsApp
+                                </span>
+                                <div
+                                    class="absolute inset-0 bg-gradient-to-r from-emerald-400 to-emerald-500 transform translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000">
+                                </div>
+                            </button>
+
+                            <!-- Form Note -->
+                            <p class="text-center text-gray-500 text-sm mt-4">
+                                * Required fields. We'll respond within 24 hours.
+                            </p>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-blue-900 text-white py-12">
+    <footer class="bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 text-white pt-16 pb-8">
         <div class="container mx-auto px-6">
-            <div class="flex flex-col md:flex-row justify-between gap-12">
-
+            <div class="flex flex-col lg:flex-row justify-between gap-12 mb-12">
                 <!-- Company Info -->
-                <div class="md:w-1/3">
-                    <div class="flex items-center space-x-4">
-                        <div class="flex items-center">
-                            <a href="#home" class="inline-block transition transform hover:scale-105">
-                                <img src="images/logo2.png" alt="EDMO Africa Trading Logo"
-                                    class="h-32 w-auto md:h-36 object-contain">
-                            </a>
-                        </div>
+                <div class="lg:w-1/3">
+                    <div class="mb-8">
+                        <a href="#home" class="inline-block transition-all duration-300 hover:scale-105">
+                            <img src="images/logo2.png" alt="EDMO Africa Trading Logo"
+                                class="h-32 w-auto object-contain">
+                        </a>
                     </div>
-                    <p class="text-gray-300 leading-relaxed">
+                    <p class="text-gray-300 leading-relaxed mb-8">
                         Thank you for taking the time to learn about EDMO Africa Trading Pty Ltd.
                         We are committed to delivering exceptional procurement and logistics
                         solutions tailored to your unique needs.
-                        We look forward to the opportunity to collaborate and contribute to your success.
                     </p>
+
+                    <!-- Social Links -->
+                    <div class="flex space-x-4">
+                        <a href="#"
+                            class="w-10 h-10 bg-blue-800 hover:bg-emerald-300 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 hover:-translate-y-1">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#"
+                            class="w-10 h-10 bg-blue-800 hover:bg-emerald-300 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 hover:-translate-y-1">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#"
+                            class="w-10 h-10 bg-blue-800 hover:bg-emerald-300 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 hover:-translate-y-1">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#"
+                            class="w-10 h-10 bg-blue-800 hover:bg-emerald-300 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 hover:-translate-y-1">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                    </div>
                 </div>
 
                 <!-- Quick Links & Services -->
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:w-2/3">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 lg:w-2/3">
                     <!-- Quick Links -->
                     <div>
-                        <h3 class="text-lg font-bold mb-4 border-b border-emerald-300 pb-2">Quick Links</h3>
-                        <ul class="space-y-2">
-                            <li><a href="#home" class="text-gray-300 hover:text-emerald-300 transition">Home</a></li>
-                            <li><a href="#about" class="text-gray-300 hover:text-emerald-300 transition">About Us</a>
-                            </li>
-                            <li><a href="#services" class="text-gray-300 hover:text-emerald-300 transition">Services</a>
-                            </li>
-                            <li><a href="#contact" class="text-gray-300 hover:text-emerald-300 transition">Contact</a>
-                            </li>
+                        <h3 class="text-lg font-bold mb-6 pb-2 border-b border-emerald-300">Quick Links</h3>
+                        <ul class="space-y-3">
+                            <li><a href="#home"
+                                    class="text-gray-300 hover:text-emerald-300 transition-all duration-300 flex items-center gap-2 group">
+                                    <i
+                                        class="fas fa-chevron-right text-xs opacity-0 group-hover:opacity-100 transition-all duration-300"></i>
+                                    Home
+                                </a></li>
+                            <li><a href="#about"
+                                    class="text-gray-300 hover:text-emerald-300 transition-all duration-300 flex items-center gap-2 group">
+                                    <i
+                                        class="fas fa-chevron-right text-xs opacity-0 group-hover:opacity-100 transition-all duration-300"></i>
+                                    About Us
+                                </a></li>
+                            <li><a href="#services"
+                                    class="text-gray-300 hover:text-emerald-300 transition-all duration-300 flex items-center gap-2 group">
+                                    <i
+                                        class="fas fa-chevron-right text-xs opacity-0 group-hover:opacity-100 transition-all duration-300"></i>
+                                    Services
+                                </a></li>
+                            <li><a href="#contact"
+                                    class="text-gray-300 hover:text-emerald-300 transition-all duration-300 flex items-center gap-2 group">
+                                    <i
+                                        class="fas fa-chevron-right text-xs opacity-0 group-hover:opacity-100 transition-all duration-300"></i>
+                                    Contact
+                                </a></li>
                         </ul>
                     </div>
 
                     <!-- Services -->
                     <div>
-                        <h3 class="text-lg font-bold mb-4 border-b border-emerald-300 pb-2">Services</h3>
-                        <ul class="space-y-2">
-                            <li><a href="#services" class="text-gray-300 hover:text-emerald-300 transition">Essential
-                                    Procurement Services</a></li>
-                            <li><a href="#services" class="text-gray-300 hover:text-emerald-300 transition">Industrial
-                                    Procurement Solutions</a></li>
-                            <li><a href="#services" class="text-gray-300 hover:text-emerald-300 transition">Logistics
-                                    Services</a></li>
-                            <li><a href="#services" class="text-gray-300 hover:text-emerald-300 transition">Extended
-                                    Services</a></li>
+                        <h3 class="text-lg font-bold mb-6 pb-2 border-b border-emerald-300">Services</h3>
+                        <ul class="space-y-3">
+                            <li><a href="#services"
+                                    class="text-gray-300 hover:text-emerald-300 transition-all duration-300 flex items-center gap-2 group">
+                                    <i
+                                        class="fas fa-check-circle text-xs opacity-0 group-hover:opacity-100 transition-all duration-300"></i>
+                                    Essential Procurement
+                                </a></li>
+                            <li><a href="#services"
+                                    class="text-gray-300 hover:text-emerald-300 transition-all duration-300 flex items-center gap-2 group">
+                                    <i
+                                        class="fas fa-check-circle text-xs opacity-0 group-hover:opacity-100 transition-all duration-300"></i>
+                                    Industrial Procurement
+                                </a></li>
+                            <li><a href="#services"
+                                    class="text-gray-300 hover:text-emerald-300 transition-all duration-300 flex items-center gap-2 group">
+                                    <i
+                                        class="fas fa-check-circle text-xs opacity-0 group-hover:opacity-100 transition-all duration-300"></i>
+                                    Logistics Services
+                                </a></li>
+                            <li><a href="#services"
+                                    class="text-gray-300 hover:text-emerald-300 transition-all duration-300 flex items-center gap-2 group">
+                                    <i
+                                        class="fas fa-check-circle text-xs opacity-0 group-hover:opacity-100 transition-all duration-300"></i>
+                                    Extended Services
+                                </a></li>
                         </ul>
                     </div>
 
                     <!-- Contact Info -->
                     <div>
-                        <h3 class="text-lg font-bold mb-4 border-b border-emerald-300 pb-2">Contact</h3>
-                        <ul class="space-y-3">
-                            <li class="flex items-start">
-                                <i class="fas fa-map-marker-alt text-emerald-300 mr-3 mt-1"></i>
+                        <h3 class="text-lg font-bold mb-6 pb-2 border-b border-emerald-300">Contact</h3>
+                        <ul class="space-y-4">
+                            <li class="flex items-start gap-3 group">
+                                <i
+                                    class="fas fa-map-marker-alt text-emerald-300 mt-1 group-hover:scale-110 transition-transform duration-300"></i>
                                 <span class="text-gray-300">Av. Marginal N9149A, Triunfo, Cowork7, Maputo,
                                     Mozambique</span>
                             </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-phone-alt text-emerald-300 mr-3 mt-1"></i>
-                                <span class="text-gray-300">+258 84 486 2630<br> +258 87 606 3000 <br> +277 3577
-                                    6411</span>
+                            <li class="flex items-start gap-3 group">
+                                <i
+                                    class="fas fa-phone-alt text-emerald-300 mt-1 group-hover:scale-110 transition-transform duration-300"></i>
+                                <div class="text-gray-300">
+                                    <div>+258 84 486 2630</div>
+                                    <div>+258 87 606 3000</div>
+                                    <div>+277 3577 6411</div>
+                                </div>
                             </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-envelope text-emerald-300 mr-3 mt-1"></i>
+                            <li class="flex items-start gap-3 group">
+                                <i
+                                    class="fas fa-envelope text-emerald-300 mt-1 group-hover:scale-110 transition-transform duration-300"></i>
                                 <a href="mailto:geral@edmoafricatrading.com"
-                                    class="text-gray-300 hover:text-emerald-300 transition">
+                                    class="text-gray-300 hover:text-emerald-300 transition-colors duration-300">
                                     geral@edmoafricatrading.com
                                 </a>
                             </li>
@@ -820,16 +1585,16 @@
             </div>
 
             <!-- Bottom Bar -->
-            <div
-                class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-                <p class="text-gray-300 text-sm">&copy; 2025 EDMO Africa Trading Pty Ltd. All rights reserved.</p>
-                <div class="flex space-x-4">
-                    <a href="#" class="text-gray-300 hover:text-blue-700 transition"><i
-                            class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="text-gray-300 hover:text-pink-500 transition"><i
-                            class="fab fa-instagram"></i></a>
-                    <a href="#" class="text-gray-300 hover:text-blue-300 transition"><i
-                            class="fab fa-linkedin-in"></i></a>
+            <div class="border-t border-blue-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-gray-400 text-sm">&copy; 2025 EDMO Africa Trading Pty Ltd. All rights reserved.</p>
+                <div class="flex items-center gap-4">
+                    <a href="#"
+                        class="text-gray-400 hover:text-emerald-300 transition-colors duration-300 text-sm">Privacy
+                        Policy</a>
+                    <span class="text-gray-600">•</span>
+                    <a href="#"
+                        class="text-gray-400 hover:text-emerald-300 transition-colors duration-300 text-sm">Terms of
+                        Service</a>
                 </div>
             </div>
         </div>
@@ -837,8 +1602,8 @@
 
     <!-- Back to Top Button -->
     <button id="backToTopBtn"
-        class="hidden fixed bottom-6 right-6 bg-emerald-300 hover:bg-emerald-500 text-white p-3 rounded-full shadow-lg transition duration-300 z-50">
-        <i class="fas fa-arrow-up"></i>
+        class="hidden fixed bottom-8 right-8 bg-gradient-to-br from-emerald-300 to-emerald-400 hover:from-emerald-400 hover:to-emerald-500 text-white p-4 rounded-full shadow-xl transition-all duration-300 transform hover:-translate-y-1 hover:shadow-2xl hover:shadow-emerald-300/30 z-50 group">
+        <i class="fas fa-arrow-up text-lg group-hover:animate-bounce"></i>
     </button>
 
     <!-- Google Translate Element -->
