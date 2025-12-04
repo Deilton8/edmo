@@ -437,8 +437,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     initScrollProgress();
 
-    initThemeToggle();
-
     // ========== 15. COPYRIGHT YEAR ==========
     function updateCopyrightYear() {
         const yearElements = document.querySelectorAll('[data-current-year]');
@@ -483,14 +481,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // ========== 17. GOOGLE TRANSLATE INTEGRATION ==========
 function googleTranslateElementInit() {
-    if (typeof google !== 'undefined' && google.translate) {
-        new google.translate.TranslateElement({
-            pageLanguage: 'pt',
-            includedLanguages: 'pt,en,es,fr',
-            autoDisplay: false,
-            layout: google.translate.TranslateElement.InlineLayout.SIMPLE
-        }, 'google_translate_element');
-    }
+    new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        includedLanguages: 'pt,en',
+        autoDisplay: false
+    }, 'google_translate_element');
 }
 
 function translatePage(lang) {
@@ -498,22 +493,6 @@ function translatePage(lang) {
     if (select) {
         select.value = lang;
         select.dispatchEvent(new Event('change'));
-
-        // Show notification
-        showTranslateNotification(lang);
-    }
-}
-
-function showTranslateNotification(lang) {
-    const messages = {
-        'pt': 'Idioma alterado para Português',
-        'en': 'Language changed to English',
-        'es': 'Idioma cambiado a Español',
-        'fr': 'Langue changée en Français'
-    };
-
-    if (typeof showNotification === 'function') {
-        showNotification(messages[lang] || 'Language changed', 'info');
     }
 }
 
@@ -547,15 +526,6 @@ function preloadImages() {
 }
 
 preloadImages();
-
-// ========== 20. SERVICE WORKER REGISTRATION (Optional) ==========
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js').catch(error => {
-            console.log('ServiceWorker registration failed:', error);
-        });
-    });
-}
 
 // ========== DOCUMENTS SECTION FUNCTIONALITY ==========
 function initDocumentsSection() {
