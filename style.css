@@ -1,743 +1,300 @@
-/* Importa a fonte Poppins do Google Fonts */
+/* ==========================================================================
+   1. CONFIGURAÇÕES GLOBAIS & VARIÁVEIS
+   ========================================================================== */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
 
-/* Reset e estilos base */
+:root {
+    --primary: #1e3a8a;
+    /* Deep Blue */
+    --accent: #10b981;
+    /* Emerald */
+    --accent-light: #6ee7b7;
+    --text-main: #1f2937;
+    --text-muted: #6b7280;
+    --bg-light: #f8fafc;
+    --transition-slow: cubic-bezier(0.85, 0, 0.15, 1);
+}
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Estilos base para o corpo */
 body {
     font-family: 'Poppins', sans-serif;
-    scroll-behavior: smooth;
+    background-color: var(--bg-light);
+    color: var(--text-main);
     overflow-x: hidden;
-    background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    scroll-behavior: smooth;
 }
 
-/* Scrollbar personalizada */
+/* Scrollbar Personalizada (Awwwards Style) */
 ::-webkit-scrollbar {
-    width: 10px;
+    width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-    background: #f1f5f9;
+    background: #f1f1f1;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: linear-gradient(to bottom, #10b981, #1e40af);
-    border-radius: 5px;
+    background: var(--primary);
+    border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(to bottom, #059669, #1e3a8a);
+    background: var(--accent);
 }
 
-/* Animações de entrada para seções */
-.section {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+/* ==========================================================================
+   2. NAVEGAÇÃO MODERNA (DESKTOP & MOBILE OVERLAY)
+   ========================================================================== */
+#main-nav {
+    transition: all 0.4s var(--transition-slow);
 }
 
-.section.visible {
-    opacity: 1;
-    transform: translateY(0);
+.nav-scrolled {
+    background: rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(20px);
+    padding: 1rem 0 !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
-/* Background do herói com gradiente e imagem */
-.hero-bg {
-    background-image:
-        linear-gradient(135deg, rgba(30, 64, 175, 0.9) 0%, rgba(5, 150, 105, 0.8) 100%),
-        url('https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    position: relative;
-}
-
-/* Card de serviços com efeito hover */
-.service-card {
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+.nav-link {
     position: relative;
     overflow: hidden;
 }
 
-.service-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(135deg, #10b98122, #1e40af22);
-    opacity: 0;
-    transition: opacity 0.4s ease;
-    z-index: 1;
-}
-
-.service-card:hover::before {
-    opacity: 1;
-}
-
-.service-card:hover {
-    transform: translateY(-8px) scale(1.02);
-    box-shadow:
-        0 20px 40px rgba(30, 64, 175, 0.15),
-        0 10px 20px rgba(16, 185, 129, 0.1);
-}
-
-/* Card de features */
-.feature-card {
-    transition: all 0.3s ease;
-    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
-    border: 1px solid #e2e8f0;
-}
-
-.feature-card:hover {
-    transform: translateY(-4px);
-    border-color: #10b981;
-    box-shadow: 0 10px 25px rgba(16, 185, 129, 0.15);
-}
-
-/* Gradient text */
-.gradient-text {
-    background: linear-gradient(135deg, #10b981 0%, #1e40af 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-/* Glass effect */
-.glass-effect {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-/* Shimmer effect */
-.shimmer {
-    position: relative;
-    overflow: hidden;
-}
-
-.shimmer::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 50%;
-    height: 100%;
-    background: linear-gradient(90deg,
-            transparent,
-            rgba(255, 255, 255, 0.4),
-            transparent);
-    animation: shimmer 2s infinite;
-}
-
-@keyframes shimmer {
-    0% {
-        left: -100%;
-    }
-
-    100% {
-        left: 200%;
-    }
-}
-
-/* Floating animation */
-@keyframes float {
-
-    0%,
-    100% {
-        transform: translateY(0px);
-    }
-
-    50% {
-        transform: translateY(-20px);
-    }
-}
-
-.float-animation {
-    animation: float 6s ease-in-out infinite;
-}
-
-/* Loading skeleton */
-.skeleton {
-    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-    background-size: 200% 100%;
-    animation: loading 1.5s infinite;
-}
-
-@keyframes loading {
-    0% {
-        background-position: 200% 0;
-    }
-
-    100% {
-        background-position: -200% 0;
-    }
-}
-
-/* Custom focus styles */
-.focus-ring {
-    @apply focus:outline-none focus:ring-2 focus:ring-emerald-300 focus:ring-offset-2;
-}
-
-/* Gradient borders */
-.gradient-border {
-    position: relative;
-    border: double 3px transparent;
-    background-image: linear-gradient(white, white),
-        linear-gradient(135deg, #10b981, #1e40af);
-    background-origin: border-box;
-    background-clip: padding-box, border-box;
-}
-
-/* Hover lift effect */
-.hover-lift {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.hover-lift:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-}
-
-/* Pulse animation */
-@keyframes pulse-slow {
-
-    0%,
-    100% {
-        opacity: 1;
-    }
-
-    50% {
-        opacity: 0.7;
-    }
-}
-
-.pulse-slow {
-    animation: pulse-slow 3s ease-in-out infinite;
-}
-
-/* Gradient shadow */
-.gradient-shadow {
-    box-shadow: 0 10px 30px rgba(16, 185, 129, 0.2);
-}
-
-/* Card hover with border animation */
-.hover-border-animation {
-    position: relative;
-}
-
-.hover-border-animation::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    padding: 2px;
-    background: linear-gradient(135deg, #10b981, #1e40af);
-    -webkit-mask:
-        linear-gradient(#fff 0 0) content-box,
-        linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-}
-
-.hover-border-animation:hover::before {
-    opacity: 1;
-}
-
-/* Text reveal animation */
-.text-reveal {
-    position: relative;
-    overflow: hidden;
-}
-
-.text-reveal::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-    transform: translateX(-100%);
-    animation: text-reveal 2s ease-in-out infinite;
-}
-
-@keyframes text-reveal {
-    100% {
-        transform: translateX(100%);
-    }
-}
-
-/* Custom selection color */
-::selection {
-    background-color: rgba(16, 185, 129, 0.3);
-    color: #1e40af;
-}
-
-/* Smooth transitions */
-.transition-all {
-    transition-property: all;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    transition-duration: 300ms;
-}
-
-/* Custom scroll progress bar */
-.scroll-progress {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 0%;
-    height: 3px;
-    background: linear-gradient(to right, #10b981, #1e40af);
-    z-index: 9999;
-    transition: width 0.1s ease;
-}
-
-/* Gradient background patterns */
-.bg-gradient-grid {
-    background-image:
-        linear-gradient(rgba(30, 64, 175, 0.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(30, 64, 175, 0.05) 1px, transparent 1px);
-    background-size: 50px 50px;
-}
-
-.bg-gradient-dots {
-    background-image: radial-gradient(rgba(30, 64, 175, 0.1) 1px, transparent 1px);
-    background-size: 30px 30px;
-}
-
-/* Custom tooltip */
-.tooltip {
-    position: relative;
-}
-
-.tooltip::before {
-    content: attr(data-tooltip);
-    position: absolute;
-    bottom: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    padding: 0.5rem 1rem;
-    background: #1e40af;
-    color: white;
-    border-radius: 0.5rem;
-    font-size: 0.875rem;
-    white-space: nowrap;
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.3s ease;
-    z-index: 10;
-}
-
-.tooltip:hover::before {
-    opacity: 1;
-    visibility: visible;
-    bottom: calc(100% + 10px);
-}
-
-/* Google Translate - remoção de banner e elementos indesejados */
-/* Remove banner do topo */
-iframe.goog-te-banner-frame {
-    display: none !important;
-}
-
-/* Esconde "powered by Google" */
-.goog-logo-link,
-.goog-te-gadget span {
-    display: none !important;
-}
-
-/* Remove sombra azul do widget */
-body>.skiptranslate {
-    display: none !important;
-}
-
-/* Oculta o seletor original de idioma */
-#google_translate_element {
-    display: none;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .hero-bg {
-        background-attachment: scroll;
-    }
-
-    .section {
-        transform: translateY(20px);
-    }
-}
-
-/* Print styles */
-@media print {
-    .no-print {
-        display: none !important;
-    }
-
-    body {
-        background: white !important;
-        color: black !important;
-    }
-}
-
-/* ========== CLEAN AUTO CAROUSEL STYLES ========== */
-
-/* Infinite scrolling animation - mais suave */
-@keyframes infiniteScroll {
-    0% {
-        transform: translateX(0);
-    }
-
-    100% {
-        transform: translateX(-50%);
-    }
-}
-
-.auto-carousel-track {
-    display: flex;
-    animation: infiniteScroll 60s linear infinite;
-}
-
-.auto-carousel-track:hover {
-    animation-play-state: paused;
-}
-
-/* Container styles */
-.auto-carousel-container {
-    position: relative;
-    overflow: hidden;
-    padding: 1rem 0;
-}
-
-/* Partner logo styles - mais limpo */
-.partner-logo {
-    flex: 0 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 1.5rem 2rem;
-    background: white;
-    border-radius: 1rem;
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
-    transition: all 0.3s ease;
-    margin: 0 0.75rem;
-    min-width: 180px;
-    height: 100px;
-}
-
-.partner-logo:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 8px 24px rgba(16, 185, 129, 0.12);
-}
-
-.partner-logo img {
-    max-width: 100%;
-    max-height: 60px;
-    object-fit: contain;
-    filter: grayscale(100%);
-    opacity: 0.8;
-    transition: all 0.3s ease;
-}
-
-.partner-logo:hover img {
-    filter: grayscale(0%);
-    opacity: 1;
-}
-
-/* Remove all text indicators and progress bars */
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .partner-logo {
-        min-width: 140px;
-        height: 80px;
-        padding: 1rem 1.5rem;
-        margin: 0 0.5rem;
-    }
-
-    .partner-logo img {
-        max-height: 50px;
-    }
-
-    @keyframes infiniteScroll {
-        0% {
-            transform: translateX(0);
-        }
-
-        100% {
-            transform: translateX(-100%);
-        }
-    }
-}
-
-/* Mobile adjustments */
-@media (max-width: 640px) {
-    .partner-logo {
-        min-width: 120px;
-        height: 70px;
-        padding: 0.75rem 1rem;
-    }
-
-    .partner-logo img {
-        max-height: 40px;
-    }
-}
-
-/* Touch device optimizations */
-@media (hover: none) {
-    .auto-carousel-track {
-        animation-duration: 40s;
-    }
-
-    .partner-logo:hover {
-        transform: none;
-        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
-    }
-}
-
-/* Reduced motion preferences */
-@media (prefers-reduced-motion: reduce) {
-    .auto-carousel-track {
-        animation: none;
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 1rem;
-    }
-
-    .partner-logo {
-        margin: 0;
-        flex: 0 0 calc(25% - 1rem);
-    }
-}
-
-/* ========== DOCUMENTS SECTION STYLES ========== */
-
-/* Document card hover effects */
-.document-card {
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    position: relative;
-    overflow: hidden;
-}
-
-.document-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, #10b981, #1e40af);
-    transform: translateY(-100%);
-    transition: transform 0.3s ease;
-}
-
-.document-card:hover::before {
-    transform: translateY(0);
-}
-
-/* PDF icon animation */
-.pdf-icon {
-    position: relative;
-    display: inline-block;
-    transition: transform 0.3s ease;
-}
-
-.pdf-icon::after {
+.nav-link::after {
     content: '';
     position: absolute;
     bottom: -2px;
     left: 0;
-    width: 100%;
+    width: 0;
     height: 2px;
-    background: #ef4444;
-    transform: scaleX(0);
-    transition: transform 0.3s ease;
+    background: var(--accent);
+    transition: width 0.3s ease;
 }
 
-.document-card:hover .pdf-icon::after {
-    transform: scaleX(1);
+.nav-link:hover::after {
+    width: 100%;
 }
 
-/* Download button animation */
-.download-btn {
+.nav-link.active {
+    color: var(--accent) !important;
+}
+
+.nav-link.active::after {
+    width: 100%;
+}
+
+/* Garante que o ícone de hambúrguer se transforma num X */
+#menu-toggle.active #bar1 {
+    transform: translateY(8px) rotate(45deg);
+}
+
+#menu-toggle.active #bar2 {
+    opacity: 0;
+}
+
+#menu-toggle.active #bar3 {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+/* Estado inicial dos links (mais visíveis mas suaves) */
+.overlay-link {
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.1);
+    /* Texto levemente visível */
+    transition: all 0.6s var(--transition-slow);
+    display: inline-block;
     position: relative;
-    overflow: hidden;
 }
 
-.download-btn::after {
+/* Quando o overlay ganha a classe .active (através do JS), os links mudam de cor */
+#menu-overlay.active .overlay-link {
+    color: #1e3a8a;
+    /* Cor principal quando o menu abre */
+    -webkit-text-stroke: 0px transparent;
+}
+
+/* Efeito ao passar o rato (Hover) */
+.overlay-link:hover {
+    color: var(--accent) !important;
+    /* Muda para Esmeralda no hover */
+    transform: translateX(20px);
+}
+
+/* Menu Overlay Fullscreen */
+#menu-overlay {
+    clip-path: circle(0% at 100% 0%);
+    transition: clip-path 0.8s var(--transition-slow);
+}
+
+#menu-overlay.active {
+    clip-path: circle(150% at 100% 0%);
+}
+
+/* ==========================================================================
+   3. HERO & ANIMAÇÕES DE TEXTO
+   ========================================================================== */
+.hero-bg {
+    background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+.animate-shimmer {
+    background: linear-gradient(90deg, #ffffff 0%, #10b981 50%, #ffffff 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    animation: shimmer 4s linear infinite;
+}
+
+@keyframes shimmer {
+    to {
+        background-position: 200% center;
+    }
+}
+
+/* ==========================================================================
+   4. COMPONENTES (CARDS & SECTIONS)
+   ========================================================================== */
+.section {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.8s var(--transition-slow);
+}
+
+.section.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Service Cards com Glassmorphism */
+.service-card {
+    background: white;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    border-radius: 24px;
+    padding: 40px;
+    transition: all 0.4s var(--transition-slow);
+}
+
+.service-card:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 20px 40px rgba(30, 58, 138, 0.1);
+    border-color: var(--accent-light);
+}
+
+/* Timeline/Milestones Style */
+.timeline-item {
+    position: relative;
+    padding-left: 40px;
+    border-left: 2px solid #e2e8f0;
+    margin-bottom: 40px;
+}
+
+.timeline-item::before {
     content: '';
     position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 5px;
-    height: 5px;
-    background: rgba(255, 255, 255, 0.5);
-    opacity: 0;
-    border-radius: 100%;
-    transform: scale(1, 1) translate(-50%);
-    transform-origin: 50% 50%;
+    left: -9px;
+    top: 0;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: 4px solid white;
+    box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.1);
 }
 
-.download-btn:focus:not(:active)::after {
-    animation: ripple 1s ease-out;
-}
-
-@keyframes ripple {
-    0% {
-        transform: scale(0, 0);
-        opacity: 0.5;
-    }
-
-    100% {
-        transform: scale(40, 40);
-        opacity: 0;
-    }
-}
-
-/* File size indicator */
-.file-size {
-    display: inline-flex;
-    align-items: center;
-    padding: 0.25rem 0.75rem;
-    background: #f8fafc;
-    border-radius: 2rem;
-    font-size: 0.875rem;
-    color: #64748b;
-    transition: all 0.3s ease;
-}
-
-.document-card:hover .file-size {
-    background: #10b98110;
-    color: #10b981;
-}
-
-/* Preview overlay effect */
-.document-preview {
-    position: relative;
-}
-
-.document-preview::before {
-    content: 'PREVIEW';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: rgba(30, 64, 175, 0.9);
-    color: white;
-    padding: 0.5rem 1.5rem;
-    border-radius: 2rem;
-    font-size: 0.75rem;
+/* ==========================================================================
+   5. BOTÕES & INTERAÇÕES
+   ========================================================================== */
+.btn-modern {
+    padding: 14px 32px;
+    border-radius: 100px;
     font-weight: 600;
-    letter-spacing: 0.1em;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    pointer-events: none;
-    z-index: 2;
-}
-
-.document-preview:hover::before {
-    opacity: 1;
-}
-
-.document-preview img {
-    filter: brightness(0.95);
-    transition: filter 0.3s ease;
-}
-
-.document-preview:hover img {
-    filter: brightness(1);
-}
-
-/* Loading animation for document preview */
-.document-loading {
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
+    z-index: 1;
 }
 
-.document-loading::after {
+.btn-modern::before {
     content: '';
     position: absolute;
     top: 0;
-    left: -100%;
-    width: 100%;
+    left: 0;
+    width: 0%;
     height: 100%;
-    background: linear-gradient(90deg,
-            transparent,
-            rgba(255, 255, 255, 0.4),
-            transparent);
-    animation: loadingShimmer 2s infinite;
+    background: rgba(255, 255, 255, 0.1);
+    transition: width 0.3s ease;
+    z-index: -1;
 }
 
-@keyframes loadingShimmer {
-    0% {
-        left: -100%;
-    }
-
-    100% {
-        left: 100%;
-    }
+.btn-modern:hover::before {
+    width: 100%;
 }
 
-/* Responsive adjustments */
+/* Back to Top Button */
+#backToTopBtn {
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* ==========================================================================
+   6. CONTACTO & FOOTER
+   ========================================================================== */
+input,
+textarea {
+    background: #f1f5f9 !important;
+    border: 2px solid transparent !important;
+    border-radius: 12px !important;
+    padding: 16px !important;
+    transition: all 0.3s ease !important;
+}
+
+input:focus,
+textarea:focus {
+    background: white !important;
+    border-color: var(--accent) !important;
+    box-shadow: 0 10px 20px rgba(16, 185, 129, 0.05) !important;
+    outline: none;
+}
+
+footer {
+    background: #0f172a;
+    position: relative;
+}
+
+footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+}
+
+/* ==========================================================================
+   7. RESPONSIVIDADE (MOBILE ADJUSTMENTS)
+   ========================================================================== */
 @media (max-width: 768px) {
-    .document-card {
-        margin-bottom: 1rem;
+    .overlay-link {
+        font-size: 3rem !important;
     }
 
-    .document-actions {
-        flex-direction: column;
-        gap: 0.5rem;
+    .section {
+        padding: 60px 0;
     }
 
-    .document-actions .btn {
-        width: 100%;
-        text-align: center;
-    }
-}
-
-/* Print styles for documents */
-@media print {
-    .document-card {
-        break-inside: avoid;
-        box-shadow: none !important;
-        border: 1px solid #e2e8f0 !important;
-    }
-
-    .no-print {
-        display: none !important;
-    }
-}
-
-/* Accessibility improvements */
-.document-card:focus-within {
-    outline: 2px solid #10b981;
-    outline-offset: 2px;
-}
-
-/* Dark mode support */
-@media (prefers-color-scheme: dark) {
-    .document-card {
-        background: #1e293b;
-        border-color: #334155;
-    }
-
-    .file-size {
-        background: #334155;
-        color: #cbd5e1;
-    }
-
-    .document-card:hover .file-size {
-        background: #10b98120;
-        color: #10b981;
+    h1 {
+        font-size: 2.5rem !important;
     }
 }
