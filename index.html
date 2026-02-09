@@ -46,6 +46,7 @@
                         'slide-down': 'slideDown 0.5s ease-out',
                         'float': 'float 3s ease-in-out infinite',
                         'shimmer': 'shimmer 2s infinite linear',
+                        'infinite-scroll': 'infinite-scroll 25s linear infinite',
                     },
                     keyframes: {
                         fadeIn: {
@@ -68,6 +69,10 @@
                             '0%': { backgroundPosition: '-200px 0' },
                             '100%': { backgroundPosition: 'calc(200px + 100%) 0' },
                         },
+                        'infinite-scroll': {
+                            from: { transform: 'translateX(0)' },
+                            to: { transform: 'translateX(-100%)' },
+                        }
                     },
                     backgroundImage: {
                         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
@@ -848,37 +853,60 @@
             </div>
         </div>
     </section>
+
     <!-- Partners Section -->
-    <section id="partners" class="py-20 bg-gradient-to-b from-white to-gray-50 section">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16 animate-slide-up">
-                <div class="inline-block mb-4">
-                    <span class="text-emerald-300 font-bold text-sm uppercase tracking-wider">Partnerships</span>
-                    <div class="w-20 h-1 bg-gradient-to-r from-emerald-300 to-blue-900 rounded-full mx-auto"></div>
-                </div>
-                <h2 class="text-4xl font-bold text-gray-800 mb-6">Trusted by Industry Leaders</h2>
-                <p class="text-gray-600 max-w-2xl mx-auto text-lg">
-                    We collaborate with trusted market partners across Southern Africa to deliver seamless procurement
-                    and logistics solutions.
-                </p>
-            </div>
+    <section id="partners" class="py-16 bg-white overflow-hidden border-y border-gray-100">
+        <div class="container mx-auto px-6 mb-10 text-center">
+            <span class="text-emerald-300 font-bold text-sm uppercase tracking-wider">Nossos Parceiros</span>
+            <h2 class="text-3xl font-bold text-gray-800">Trusted by Industry Leaders</h2>
+        </div>
 
-            <!-- Clean Auto Carousel Wrapper -->
-            <div class="relative">
-                <div class="auto-carousel-container overflow-hidden">
-                    <!-- Auto-scrolling Carousel -->
-                    <div id="autoCarousel" class="flex">
-                        <!-- Partner logos will be inserted here -->
-                    </div>
-                </div>
-
-                <!-- Subtle gradient overlays -->
-                <div
-                    class="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-white to-transparent pointer-events-none">
-                </div>
-                <div
-                    class="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-white to-transparent pointer-events-none">
-                </div>
+        <div class="relative flex overflow-x-hidden group">
+            <div class="flex animate-infinite-scroll whitespace-nowrap items-center py-4" aria-hidden="true">
+                <img src="images/ayuda-en-accion.png" alt="Partner"
+                    class="mx-12 h-12 grayscale hover:grayscale-0 transition-all duration-300 opacity-60 hover:opacity-100" />
+                <img src="images/bci.png" alt="Partner"
+                    class="mx-12 h-12 grayscale hover:grayscale-0 transition-all duration-300 opacity-60 hover:opacity-100" />
+                <img src="images/cdm.png" alt="Partner"
+                    class="mx-12 h-12 grayscale hover:grayscale-0 transition-all duration-300 opacity-60 hover:opacity-100" />
+                <img src="images/cummins.png" alt="Partner"
+                    class="mx-12 h-12 grayscale hover:grayscale-0 transition-all duration-300 opacity-60 hover:opacity-100" />
+                <img src="images/cvm.png" alt="Partner"
+                    class="mx-12 h-12 grayscale hover:grayscale-0 transition-all duration-300 opacity-60 hover:opacity-100" />
+                <img src="images/dupont.png" alt="Partner"
+                    class="mx-12 h-12 grayscale hover:grayscale-0 transition-all duration-300 opacity-60 hover:opacity-100" />
+                <img src="images/fedexpng.png" alt="Partner"
+                    class="mx-12 h-12 grayscale hover:grayscale-0 transition-all duration-300 opacity-60 hover:opacity-100" />
+                <img src="images/Fipag.png" alt="Partner"
+                    class="mx-12 h-12 grayscale hover:grayscale-0 transition-all duration-300 opacity-60 hover:opacity-100" />
+                <img src="images/Honeywell-Logo.png" alt="Partner"
+                    class="mx-12 h-12 grayscale hover:grayscale-0 transition-all duration-300 opacity-60 hover:opacity-100" />
+                <img src="images/Intercape-Logo.png" alt="Partner"
+                    class="mx-12 h-12 grayscale hover:grayscale-0 transition-all duration-300 opacity-60 hover:opacity-100" />
+                <img src="images/kb.png" alt="Partner"
+                    class="mx-12 h-12 grayscale hover:grayscale-0 transition-all duration-300 opacity-60 hover:opacity-100" />
+                <img src="images/logo-dhl.png" alt="Partner"
+                    class="mx-12 h-12 grayscale hover:grayscale-0 transition-all duration-300 opacity-60 hover:opacity-100" />
+                <img src="images/msf.png" alt="Partner"
+                    class="mx-12 h-12 grayscale hover:grayscale-0 transition-all duration-300 opacity-60 hover:opacity-100" />
+                <img src="images/pd.png" alt="Partner"
+                    class="mx-12 h-12 grayscale hover:grayscale-0 transition-all duration-300 opacity-60 hover:opacity-100" />
+                <img src="images/pna.png" alt="Partner"
+                    class="mx-12 h-12 grayscale hover:grayscale-0 transition-all duration-300 opacity-60 hover:opacity-100" />
+                <img src="images/stc.png" alt="Partner"
+                    class="mx-12 h-12 grayscale hover:grayscale-0 transition-all duration-300 opacity-60 hover:opacity-100" />
+                <img src="images/tcg.png" alt="Partner"
+                    class="mx-12 h-12 grayscale hover:grayscale-0 transition-all duration-300 opacity-60 hover:opacity-100" />
+                <img src="images/tmcel.png" alt="Partner"
+                    class="mx-12 h-12 grayscale hover:grayscale-0 transition-all duration-300 opacity-60 hover:opacity-100" />
+                <img src="images/UD-Trucks-Logo.png" alt="Partner"
+                    class="mx-12 h-12 grayscale hover:grayscale-0 transition-all duration-300 opacity-60 hover:opacity-100" />
+                <img src="images/unicef.png" alt="Partner"
+                    class="mx-12 h-12 grayscale hover:grayscale-0 transition-all duration-300 opacity-60 hover:opacity-100" />
+                <img src="images/waltons.png" alt="Partner"
+                    class="mx-12 h-12 grayscale hover:grayscale-0 transition-all duration-300 opacity-60 hover:opacity-100" />
+                <img src="images/woodmead.png" alt="Partner"
+                    class="mx-12 h-12 grayscale hover:grayscale-0 transition-all duration-300 opacity-60 hover:opacity-100" />
             </div>
         </div>
     </section>

@@ -298,3 +298,30 @@ footer::before {
         font-size: 2.5rem !important;
     }
 }
+
+/* Efeito de fade nas bordas do carrossel */
+#partners .relative::before,
+#partners .relative::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 150px;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+}
+
+#partners .relative::before {
+    left: 0;
+    background: linear-gradient(to right, white, transparent);
+}
+
+#partners .relative::after {
+    right: 0;
+    background: linear-gradient(to left, white, transparent);
+}
+
+/* Pausa o scroll ao passar o mouse para facilitar a visualização */
+.group:hover .animate-infinite-scroll {
+    animation-play-state: paused;
+}
